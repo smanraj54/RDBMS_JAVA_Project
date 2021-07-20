@@ -1,0 +1,29 @@
+package com.dal.database.utils;
+
+import com.dal.database.Login.AllUsers;
+import com.dal.database.Login.AttemptLogin;
+import com.dal.database.Login.RegisterUser;
+import com.dal.database.Login.UserDetails;
+import com.dal.database.fetchdatabase.GetUsersData;
+
+import java.util.Scanner;
+
+public class Application {
+
+    public static String pathOfUsers = "./RawData/LoginUsersData/AllUsers";
+    public static String pathOfDataBase = "./RawData/databases/";
+
+    public static void main(String[] args) {
+        /*RegisterUser registerUser = new RegisterUser();
+        registerUser.registerNewUser("root", "root123");
+        registerUser.registerNewUser("manu", "manu123");
+        registerUser.writeToObjectFile();*/
+
+        AttemptLogin login = new AttemptLogin();
+        login.loginUser(new Scanner(System.in));
+
+
+
+    }
+
+}

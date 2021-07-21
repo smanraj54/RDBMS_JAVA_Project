@@ -5,6 +5,7 @@ import com.dal.database.Login.AttemptLogin;
 import com.dal.database.Login.RegisterUser;
 import com.dal.database.Login.UserDetails;
 import com.dal.database.fetchdatabase.GetUsersData;
+import com.dal.database.queryManagement.SplitQuery;
 
 import java.util.Scanner;
 
@@ -19,9 +20,18 @@ public class Application {
         registerUser.registerNewUser("manu", "manu123");
         registerUser.writeToObjectFile();*/
 
-        AttemptLogin login = new AttemptLogin();
-        login.loginUser(new Scanner(System.in));
-
+//        AttemptLogin login = new AttemptLogin();
+//        login.loginUser(new Scanner(System.in));
+//
+        //SplitQuery splitQuery = new SplitQuery(" Select (name, value, data) from oss_ref_data where name = 'erfverf vrfvr';");
+        SplitQuery splitQuery = new SplitQuery(" CREATE TABLE Persons (" +
+                "    PersonID int," +
+                "    LastName String," +
+                "    FirstName String," +
+                "    Address String," +
+                "    City String" +
+                ");");
+        splitQuery.splitQueryTokens();
 
 
     }

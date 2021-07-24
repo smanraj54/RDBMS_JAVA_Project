@@ -1,18 +1,15 @@
 package com.dal.database.DataStorage;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Table implements Serializable {
 
-    Map<String, String> columnNamesAndInputType = null;
+    Map<String, String> columnNamesAndInputType;
     List<TableRowEntryStructure> rows = new ArrayList<>();
 
-    public Table(){
-        columnNamesAndInputType = new HashMap<>();
+    public Table() {
+        columnNamesAndInputType = new LinkedHashMap<>();
     }
 
 }

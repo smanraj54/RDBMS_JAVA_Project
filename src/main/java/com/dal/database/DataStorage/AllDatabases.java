@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class AllDatabases implements Serializable {
 
-    Map<String, Database> databaseMap = null;
+    public Map<String, Database> databaseMap = null;
 
     public AllDatabases(){
         databaseMap = new HashMap<>();

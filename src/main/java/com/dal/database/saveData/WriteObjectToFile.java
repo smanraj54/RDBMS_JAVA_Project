@@ -5,9 +5,9 @@ import com.dal.database.utils.BasicFolderStructure;
 import java.io.*;
 
 
-public class WriteObjecToFile {
+public class WriteObjectToFile {
 
-    public WriteObjecToFile() {
+    public WriteObjectToFile() {
         try {
             BasicFolderStructure basicFolderStructure = new BasicFolderStructure();
         } catch (IOException ioException) {

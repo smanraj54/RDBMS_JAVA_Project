@@ -5,8 +5,9 @@ import java.util.*;
 
 public class Table implements Serializable {
 
-    Map<String, String> columnNamesAndInputType;
-    List<TableRowEntryStructure> rows = new ArrayList<>();
+    public Map<String, String> columnNamesAndInputType;
+    public List<TableRowEntryStructure> rows = new ArrayList<>();
+    public String tableName = null;
 
     public Table() {
         columnNamesAndInputType = new LinkedHashMap<>();

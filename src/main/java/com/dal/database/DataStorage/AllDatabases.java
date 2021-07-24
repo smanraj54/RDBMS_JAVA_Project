@@ -7,9 +7,17 @@ import java.util.Map;
 public class AllDatabases implements Serializable {
 
     public Map<String, Database> databaseMap = null;
+    private static AllDatabases instance = null;
 
-    public AllDatabases(){
+    private AllDatabases(){
         databaseMap = new HashMap<>();
     }
 
+    public static AllDatabases getInstance() {
+        if (instance == null) {
+            instance = new AllDatabases();
+        }
+
+        return instance;
+    }
 }

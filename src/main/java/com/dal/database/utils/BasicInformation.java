@@ -1,5 +1,9 @@
 package com.dal.database.utils;
 
+import com.dal.database.DataStorage.AllDatabases;
+import com.dal.database.DataStorage.Database;
+import com.dal.database.PrintInfo;
+
 import java.io.Serializable;
 
 public class BasicInformation {
@@ -25,7 +29,17 @@ public class BasicInformation {
         this.lockedDatabase = lockedDatabase;
     }
 
+    public Database fetchDatabase(){
 
+        String databaseName = BasicInformation.getInstance().getLockedDatabase();
+        if(databaseName == null){
+            return null;
+        }
+
+        Database database = AllDatabases.getInstance().databaseMap.get(databaseName);
+
+        return database;
+    }
 
 
 }

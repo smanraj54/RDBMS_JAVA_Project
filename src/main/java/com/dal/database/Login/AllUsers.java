@@ -21,5 +21,4 @@ public class AllUsers implements Serializable {
     public UserDetails addUser(UserDetails userDetails){
         return usersList.put(userDetails.getUserName(), userDetails);
     }
-
 }

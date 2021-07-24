@@ -10,9 +10,12 @@ public class Database implements Serializable {
 
     public Map<String, Table > tables;
     public Set<String> lockedTables;
+    public String databaseName = null;
 
     public Database(){
         tables = new HashMap<>();
         lockedTables = new HashSet<>();
     }
+
+
 }

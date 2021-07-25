@@ -26,13 +26,13 @@ public class SplitQuery {
             tokens.add(token);
         }
 
-        System.out.println(tokens);
+        //System.out.println(tokens);
         tokens = refactorNullValues(tokens);
-        System.out.println(tokens);
+        //System.out.println(tokens);
         tokens = refactorCommas(tokens);
-        System.out.println(tokens);
+        //System.out.println(tokens);
 
-        printTokens(tokens);
+        //printTokens(tokens);
 
         return tokens;
 

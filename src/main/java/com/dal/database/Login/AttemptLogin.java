@@ -1,5 +1,7 @@
 package com.dal.database.Login;
 
+import com.dal.database.utils.BasicInformation;
+
 import java.util.Map;
 import java.util.Scanner;
 
@@ -9,7 +11,7 @@ public class AttemptLogin {
 
     AllUsers allUsers = null;
     public AttemptLogin(){
-        allUsers = FetchAllUsers.getInstance().getAllUsers();
+        allUsers = AllUsers.getInstance();
     }
 
     public boolean loginUser(Scanner sc){
@@ -35,6 +37,7 @@ public class AttemptLogin {
 
             if(usersMap.containsKey(userName) && (usersMap.get(userName)).getPassword().equals(password)){
                 System.out.println("\n\t\tlogin Successful!!!");
+                BasicInformation.getInstance().setLoginUser(userName);
                 return true;
             }
         }

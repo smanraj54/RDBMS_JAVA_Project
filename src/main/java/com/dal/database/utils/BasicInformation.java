@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class BasicInformation {
 
     private String lockedDatabase = null;
+    private String loginUser = null;
     private static BasicInformation instance = null;
 
     private BasicInformation(){
@@ -41,5 +42,11 @@ public class BasicInformation {
         return database;
     }
 
+    public String getLoginUser() {
+        return loginUser;
+    }
 
+    public void setLoginUser(String loginUser) {
+        this.loginUser = loginUser;
+    }
 }

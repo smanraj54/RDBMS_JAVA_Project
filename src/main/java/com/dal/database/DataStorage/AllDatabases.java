@@ -20,4 +20,8 @@ public class AllDatabases implements Serializable {
 
         return instance;
     }
+
+    public static void setInstance(AllDatabases allDatabases){
+        instance = allDatabases;
+    }
 }

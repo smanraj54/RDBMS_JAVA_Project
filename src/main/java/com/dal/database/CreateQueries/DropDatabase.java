@@ -1,0 +1,25 @@
+package com.dal.database.CreateQueries;
+
+import com.dal.database.DataStorage.AllDatabases;
+import com.dal.database.PrintInfo;
+import com.dal.database.utils.BasicFolderStructure;
+import com.dal.database.utils.BasicInformation;
+
+public class DropDatabase {
+
+    public DropDatabase(){}
+
+    public boolean dropThisDatabase(String Database){
+        if(AllDatabases.getInstance().databaseMap.containsKey(Database)){
+            if(Database.equals(BasicInformation.getInstance().getLockedDatabase())) {
+                BasicInformation.getInstance().setLockedDatabase(null);
+            }
+            AllDatabases.getInstance().databaseMap.remove(Database);
+            return true;
+        }
+        else{
+            PrintInfo.getInstance().printError("Database does not exist!!");
+        }
+        return false;
+    }
+}

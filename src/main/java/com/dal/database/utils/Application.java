@@ -23,14 +23,14 @@ public class Application {
 //        AttemptLogin login = new AttemptLogin();
 //        login.loginUser(new Scanner(System.in));
 //
-        //SplitQuery splitQuery = new SplitQuery(" Select (name, value, data) from oss_ref_data where name = 'erfverf vrfvr';");
-        SplitQuery splitQuery = new SplitQuery(" CREATE TABLE Persons (" +
-                "    PersonID int," +
-                "    LastName String," +
-                "    FirstName String," +
-                "    Address String," +
-                "    City String" +
-                ");");
+        SplitQuery splitQuery = new SplitQuery(" Select (name, value, data) from oss_ref_data where name = 'erfverf vrfvr';");
+//        SplitQuery splitQuery = new SplitQuery(" CREATE TABLE Persons (" +
+//                "    PersonID int," +
+//                "    LastName String," +
+//                "    FirstName String," +
+//                "    Address String," +
+//                "    City String" +
+//                ");");
         splitQuery.splitQueryTokens();
 
 

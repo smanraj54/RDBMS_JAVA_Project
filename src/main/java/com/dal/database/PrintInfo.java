@@ -27,4 +27,8 @@ public class PrintInfo {
         System.out.print(message);
     }
 
+    public void commandError(){
+        printError("\n\tEnter Correct Command\n\t");
+    }
+
 }

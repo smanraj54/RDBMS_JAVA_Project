@@ -4,6 +4,7 @@ import com.dal.database.DataStorage.AllDatabases;
 import com.dal.database.DataStorage.Database;
 import com.dal.database.DataStorage.Table;
 import com.dal.database.PrintInfo;
+import com.dal.database.saveData.WriteDatabaseToFile;
 import com.dal.database.utils.BasicInformation;
 import com.sun.jdi.request.DuplicateRequestException;
 
@@ -34,6 +35,7 @@ public class CreateTable {
         table.tableName = tableName;
         table.columnNamesAndInputType = columnNamesAndInputType;
         database.tables.put(tableName, table);
+        WriteDatabaseToFile.getInstance().writeThisDatabasesList(AllDatabases.getInstance());
         return true;
     }
 

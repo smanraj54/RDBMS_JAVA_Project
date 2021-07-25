@@ -2,6 +2,7 @@ package com.dal.database.CreateQueries;
 
 import com.dal.database.DataStorage.AllDatabases;
 import com.dal.database.PrintInfo;
+import com.dal.database.saveData.WriteDatabaseToFile;
 import com.dal.database.utils.BasicFolderStructure;
 import com.dal.database.utils.BasicInformation;
 
@@ -15,6 +16,7 @@ public class DropDatabase {
                 BasicInformation.getInstance().setLockedDatabase(null);
             }
             AllDatabases.getInstance().databaseMap.remove(Database);
+            WriteDatabaseToFile.getInstance().writeThisDatabasesList(AllDatabases.getInstance());
             return true;
         }
         else{

@@ -1,17 +1,14 @@
 package com.dal.database.utils;
 
-import com.dal.database.CreateQueries.Commit;
-import com.dal.database.CreateQueries.CreateDatabase;
+import com.dal.database.CreateQueries.*;
+import com.dal.database.DataStorage.Table;
 import com.dal.database.Login.AttemptLogin;
-import com.dal.database.Login.FetchAllUsers;
 import com.dal.database.PrintInfo;
 import com.dal.database.fetchdatabase.FetchDataFromFiles;
 import com.dal.database.queryManagement.SplitQuery;
 
-import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
-import java.util.regex.Matcher;
+import java.io.IOException;
+import java.util.*;
 import java.util.regex.Pattern;
 
 public class InputFromUser {
@@ -21,6 +18,11 @@ public class InputFromUser {
         PrintInfo.getInstance().printMessage("Welcome to DVM Distributed Database:\n");
         PrintInfo.getInstance().printMessage("\n\t####################################\n");
 
+        try {
+            new BasicFolderStructure();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
     }
 
     private static InputFromUser instance = null;
@@ -70,11 +72,54 @@ public class InputFromUser {
             case "create":{
                 return(create(newTokens));
             }
+            case "use":{
+                return(useDatabase(newTokens));
+            }
+            case "show":{
+                return showDatabases(newTokens);
+            }
+
             default :{
                 PrintInfo.getInstance().commandError();
                 return false;
             }
         }
+
+    }
+
+    private boolean useDatabase(List<String> tokens){
+        if(!tokenListValidation(tokens)){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        String databaseName = tokens.get(0);
+        tokens = getSubTokens(tokens);
+
+        if(!(tokens == null || tokens.size()<=0 || (";").equals(tokens.get(0)))){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        UseDatabase useDatabase = new UseDatabase();
+        return useDatabase.UseThisDatabase(databaseName);
+
+    }
+
+    private boolean showDatabases(List<String> tokens){
+        if(!tokenListValidation(tokens)){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        String query = tokens.get(0);
+        tokens = getSubTokens(tokens);
+
+        if(!endOfQuery(tokens) || !"databases".equalsIgnoreCase(query)){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        ShowDatabases showDatabases = new ShowDatabases();
+        showDatabases.showAllDatabases();
+
+        return true;
 
     }
 
@@ -105,8 +150,10 @@ public class InputFromUser {
         if(tokenListValidation(tokens)){
             switch (tokens.get(0).toLowerCase()){
                 case "database" : {
-                    createDatabase(getSubTokens(tokens));
-                    break;
+                    return (createDatabase(getSubTokens(tokens)));
+                }
+                case "table" : {
+                    return(createTable(getSubTokens(tokens)));
                 }
                 default:{
                     PrintInfo.getInstance().commandError();
@@ -114,7 +161,9 @@ public class InputFromUser {
                 }
             }
         }
-
+        else{
+            PrintInfo.getInstance().commandError();
+        }
         return false;
     }
 
@@ -137,6 +186,95 @@ public class InputFromUser {
         return false;
     }
 
+    private boolean createTable(List<String> tokens){
+        if(!tableQueryBasicCheck()){
+            return false;
+        }
+        if(!tokenListValidation(tokens)){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        if(!regexValidationOfName(tokens.get(0))){
+            PrintInfo.getInstance().printError("\n\tTable Name should only contain characters\n");
+            return false;
+        }
+        String name = tokens.get(0);
+        tokens = getSubTokens(tokens);
+        if(tokens == null || tokens.size()<=0 || (";").equals(tokens.get(0))){
+            PrintInfo.getInstance().printError("\n\tEnter input columns for the tables\n");
+            return false;
+        }
+        List<String> columns = fetchColumnsForTableCreate(tokens);
+        if(columns == null){
+            return false;
+        }
+        Map<String, String> columnAndType = fetchColumnAndTypeMap(columns);
+        if(columnAndType == null){
+            return false;
+        }
+
+        CreateTable createTable = new CreateTable();
+        return createTable.addTable(name, columnAndType);
+    }
+
+    private List<String> fetchColumnsForTableCreate(List<String> tokens){
+        if(!("(").equals(tokens.get(0))){
+            PrintInfo.getInstance().commandError();
+            return null;
+        }
+        tokens = getSubTokens(tokens);
+        if(!tokenListValidation(tokens)){
+            PrintInfo.getInstance().commandError();
+            return null;
+        }
+        int lastIndex = tokens.size()-1;
+        String last = tokens.get(lastIndex);
+        String secondLast = tokens.get(lastIndex-1);
+        if(")".equals(last)){
+            return tokens.subList(0, lastIndex);
+        }
+        else if(";".equals(last) && ")".equals(secondLast)){
+            return tokens.subList(0, lastIndex-1);
+        }
+
+        PrintInfo.getInstance().commandError();
+        return null;
+    }
+
+    private Map<String, String> fetchColumnAndTypeMap(List<String> tokens){
+        Map<String, String> columnsWithDataType = new LinkedHashMap<>();
+        for(;;){
+            if(tokens == null || tokens.size()<=0){
+                break;
+            }
+            if(tokens.size() < 2){
+                PrintInfo.getInstance().commandError();
+                return null;
+            }
+            String columnName = tokens.get(0).toUpperCase();
+            String columnType = tokens.get(1);
+            if(!regexValidationOfName(columnName) || !regexValidationOfName(columnType) || columnDataTypeValidation(columnType) == null){
+                PrintInfo.getInstance().commandError();
+                return null;
+            }
+
+            columnType = columnDataTypeValidation(columnType);
+
+            columnsWithDataType.put(columnName, columnType);
+            tokens = getSubTokens(getSubTokens(tokens));
+            if(tokens!=null && tokens.size()>0){
+                if((",").equals(tokens.get(0))){
+                    tokens = getSubTokens(tokens);
+                }
+                else{
+                    PrintInfo.getInstance().commandError();
+                    return null;
+                }
+            }
+        }
+        return columnsWithDataType;
+    }
+
     private boolean regexValidationOfName(String name){
         String regex = "^[a-zA-Z]++$";
 
@@ -147,6 +285,7 @@ public class InputFromUser {
         }
         return true;
     }
+
     private List<String> getSubTokens(List<String> tokens){
         List<String> newTokens = null;
         if(tokens.size()>1){
@@ -157,6 +296,42 @@ public class InputFromUser {
 
     private boolean tokenListValidation(List<String> tokens){
         return(tokens != null && tokens.size()>=1);
+    }
+
+    private String columnDataTypeValidation(String datatype){
+        switch(datatype.toLowerCase()){
+            case "string" : {
+                return "String";
+            }
+            case "double" : {
+                return "Double";
+            }
+            case "boolean" : {
+                return "Boolean";
+            }
+            case "int" : {
+                return "Integer";
+            }
+            case "integer" : {
+                return "Integer";
+            }
+            default:{
+                return null;
+            }
+
+        }
+    }
+
+    private boolean tableQueryBasicCheck(){
+        if(BasicInformation.getInstance().fetchDatabase() == null){
+            PrintInfo.getInstance().printError("\n\tSelect Database First!!!\n");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean endOfQuery(List<String> tokens){
+        return (tokens == null || tokens.size()<=0 || (";").equals(tokens.get(0)));
     }
 
 }

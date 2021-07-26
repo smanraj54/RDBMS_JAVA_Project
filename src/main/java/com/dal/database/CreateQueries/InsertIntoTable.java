@@ -33,11 +33,11 @@ public class InsertIntoTable {
                 return true;
             }
             else{
-                PrintInfo.getInstance().printError("Table not Present!!!");
+                PrintInfo.getInstance().printError("\n\tTable not Present!!!\n");
             }
         }
         else{
-            PrintInfo.getInstance().printError("Select Database First!!!");
+            PrintInfo.getInstance().printError("\n\tSelect Database First!!!\n");
         }
 
         return false;

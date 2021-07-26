@@ -20,7 +20,7 @@ public class DropDatabase {
             return true;
         }
         else{
-            PrintInfo.getInstance().printError("Database does not exist!!");
+            PrintInfo.getInstance().printError("\n\tDatabase does not exist!!\n");
         }
         return false;
     }

@@ -28,7 +28,7 @@ public class PrintInfo {
     }
 
     public void commandError(){
-        printError("\n\tEnter Correct Command\n\t");
+        printError("\n\tEnter Correct Command\n");
     }
 
 }

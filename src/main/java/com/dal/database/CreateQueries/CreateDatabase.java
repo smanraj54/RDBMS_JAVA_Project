@@ -12,8 +12,9 @@ public class CreateDatabase {
     }
 
     public boolean addDatabase(String databaseName){
+        databaseName = databaseName.toUpperCase();
         if(AllDatabases.getInstance().databaseMap.containsKey(databaseName)){
-            PrintInfo.getInstance().printError("Database Already Exist");
+            PrintInfo.getInstance().printError("\n\tDatabase Already Exist\n");
             return false;
         }
         database = new Database();
@@ -22,5 +23,6 @@ public class CreateDatabase {
         WriteDatabaseToFile.getInstance().writeThisDatabasesList(AllDatabases.getInstance());
         return true;
     }
+
 
 }

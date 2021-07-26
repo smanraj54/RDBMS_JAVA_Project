@@ -3,6 +3,7 @@ package com.dal.database.utils;
 import com.dal.database.Login.AttemptLogin;
 import com.dal.database.Login.RegisterUser;
 import com.dal.database.PrintInfo;
+import com.dal.database.fetchdatabase.FetchDataFromFiles;
 import com.dal.database.queryManagement.SplitQuery;
 
 import java.util.Scanner;
@@ -16,6 +17,9 @@ public class Application {
   public static String pathOfQueryLogFiles = "./RawData/Logs/QueryLogs";
 
   public static void main(String[] args) {
+
+    FetchDataFromFiles.fetchAllDatabases();
+    FetchDataFromFiles.fetchAllUsers();
 
     final RegisterUser registerUser = new RegisterUser();
     final AttemptLogin attemptLogin = new AttemptLogin();

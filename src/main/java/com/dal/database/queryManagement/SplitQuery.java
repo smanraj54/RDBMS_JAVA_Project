@@ -32,7 +32,7 @@ public class SplitQuery {
         tokens = refactorCommas(tokens);
         //System.out.println(tokens);
 
-        //printTokens(tokens);
+        printTokens(tokens);
 
         return tokens;
 

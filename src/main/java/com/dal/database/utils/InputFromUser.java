@@ -36,8 +36,7 @@ public class InputFromUser {
     }
 
     public void inputsFromUser(Scanner sc){
-        FetchDataFromFiles.fetchAllDatabases();
-        FetchDataFromFiles.fetchAllUsers();
+
         AttemptLogin attemptLogin = new AttemptLogin();
         if(!attemptLogin.loginUser(new Scanner(System.in))){
             System.exit(0);
@@ -454,11 +453,12 @@ public class InputFromUser {
                 PrintInfo.getInstance().printError("\n\tRow does not exist\n");
                 return null;
             }
-            switch(columnAndDatatype.get(columnNames.get(t)).toLowerCase()){
+            switch(columnAndDatatype.get(columnNames.get(t).toUpperCase()).toLowerCase()){
                 case "integer":{
                     try{
                         Integer.parseInt(columnValues.get(t));
                         row.put(columnNames.get(t).toUpperCase(), columnValues.get(t));
+                        break;
                     }catch(Exception e){
                         PrintInfo.getInstance().printError("\n\tData type of input parameter: \" "+columnNames.get(t)+" \" is wrong\n");
                         return null;
@@ -468,6 +468,7 @@ public class InputFromUser {
                     try{
                         Double.parseDouble(columnValues.get(t));
                         row.put(columnNames.get(t).toUpperCase(), columnValues.get(t));
+                        break;
                     }catch(Exception e){
                         PrintInfo.getInstance().printError("\n\tData type of input parameter: \" "+columnNames.get(t)+" \" is wrong\n");
                         return null;
@@ -477,6 +478,7 @@ public class InputFromUser {
                     try{
                         Boolean.parseBoolean(columnValues.get(t));
                         row.put(columnNames.get(t).toUpperCase(), columnValues.get(t));
+                        break;
                     }catch(Exception e){
                         PrintInfo.getInstance().printError("\n\tData type of input parameter: \" "+columnNames.get(t)+" \" is wrong\n");
                         return null;
@@ -486,6 +488,7 @@ public class InputFromUser {
                     try{
                         (columnValues.get(t)).toString();
                         row.put(columnNames.get(t).toUpperCase(), columnValues.get(t));
+                        break;
                     }catch(Exception e){
                         PrintInfo.getInstance().printError("\n\tData type of input parameter: \" "+columnNames.get(t)+" \" is wrong\n");
                         return null;
@@ -516,12 +519,24 @@ public class InputFromUser {
                 PrintInfo.getInstance().commandError();
                 return null;
             }
-            if(!regexValidationOfName(tokens.get(0)) && RegexRequired){
+            if("'".equals(tokens.get(0))){
+                tokens = getSubTokens(tokens);
+            }
+            if(endOfQuery(tokens) || (!regexValidationOfName(tokens.get(0)) && RegexRequired)){
                 PrintInfo.getInstance().commandError();
                 return null;
             }
             newTokens.add(tokens.get(0));
             tokens = getSubTokens(tokens);
+
+            if(endOfQuery(tokens)){
+                PrintInfo.getInstance().commandError();
+                return null;
+            }
+
+            if("'".equals(tokens.get(0))){
+                tokens = getSubTokens(tokens);
+            }
             if(")".equals(tokens.get(0))){
                 break;
             }

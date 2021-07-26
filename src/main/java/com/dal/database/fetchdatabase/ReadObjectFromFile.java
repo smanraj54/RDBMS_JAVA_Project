@@ -1,5 +1,7 @@
 package com.dal.database.fetchdatabase;
 
+import com.dal.database.Login.RegisterUser;
+
 import java.io.*;
 
 public class ReadObjectFromFile {
@@ -27,13 +29,13 @@ public class ReadObjectFromFile {
             objectInputStream = new ObjectInputStream(fileInputStream);
             readObject = objectInputStream.readObject();
             System.out.println("Reading object was successful");
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }finally {
+            RegisterUser registerUser = new RegisterUser();
+            registerUser.registerNewUser("root", "root123");
+            registerUser.registerNewUser("manu", "manu123");
+            registerUser.writeToObjectFile();
+        } finally {
             if(objectInputStream != null){
                 try {
                     objectInputStream.close();

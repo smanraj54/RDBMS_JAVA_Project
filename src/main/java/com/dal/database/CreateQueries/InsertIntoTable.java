@@ -14,8 +14,9 @@ public class InsertIntoTable {
 
     public InsertIntoTable(){}
 
-    public boolean insertIntoTableValues(String tableName, Map<String, Object> Inputs){
+    public boolean InsertIntoTableValues(String tableName, Map<String, Object> Inputs){
 
+        tableName = tableName.toUpperCase();
         if(BasicInformation.getInstance().getLockedDatabase() != null){
             if(BasicInformation.getInstance().fetchDatabase().tables.containsKey(tableName)){
                 Table table = BasicInformation.getInstance().fetchDatabase().tables.get(tableName);

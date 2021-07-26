@@ -1,6 +1,7 @@
 package com.dal.database.utils;
 
 import com.dal.database.CreateQueries.*;
+import com.dal.database.DataStorage.AllDatabases;
 import com.dal.database.DataStorage.Table;
 import com.dal.database.Login.AttemptLogin;
 import com.dal.database.PrintInfo;
@@ -15,7 +16,7 @@ public class InputFromUser {
 
     private InputFromUser(){
         PrintInfo.getInstance().printMessage("\n\t####################################\n");
-        PrintInfo.getInstance().printMessage("Welcome to DVM Distributed Database:\n");
+        PrintInfo.getInstance().printMessage("Welcome to DVM Relational Database:\n");
         PrintInfo.getInstance().printMessage("\n\t####################################\n");
 
         try {
@@ -78,6 +79,9 @@ public class InputFromUser {
             case "show":{
                 return showDatabases(newTokens);
             }
+            case "insert":{
+                return InsertIntoTable(newTokens);
+            }
 
             default :{
                 PrintInfo.getInstance().commandError();
@@ -86,6 +90,151 @@ public class InputFromUser {
         }
 
     }
+
+    private boolean InsertIntoTable(List<String> tokens){
+        if(!tableQueryBasicCheck()){
+            return false;
+        }
+
+        if(!tokenListValidation(tokens) || !"into".equalsIgnoreCase(tokens.get(0))){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+
+        tokens = getSubTokens(tokens);
+        if(!tokenListValidation(tokens)){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        String tableName = tokens.get(0);
+        if(!BasicInformation.getInstance().fetchDatabase().tables.containsKey(tableName.toUpperCase())){
+            PrintInfo.getInstance().printError("\n\tTable does not exist!!!\n");
+            return false;
+        }
+
+        tokens = getSubTokens(tokens);
+        if(!tokenListValidation(tokens) || !"(".equals(tokens.get(0))){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        tokens = getSubTokens(tokens);
+        List<String> columnNames = getBracketTokens(tokens, true);
+        if(columnNames == null){
+            return false;
+        }
+        int index = getIndexOfClosingBracket(tokens);
+        if(index < 0){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        tokens = tokens.subList(index, tokens.size());
+        tokens = getSubTokens(tokens);
+        if(endOfQuery(tokens)){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        if(!"values".equalsIgnoreCase(tokens.get(0))){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        tokens = getSubTokens(tokens);
+        if(endOfQuery(tokens) || !"(".equals(tokens.get(0))){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        
+        tokens  = getSubTokens(tokens);
+        
+        List<String> columnValues = getBracketTokens(tokens, false);
+        if(columnValues == null){
+            return false;
+        }
+        
+        if(columnNames.size() != columnValues.size()){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        
+        
+        InsertIntoTable insert = new InsertIntoTable();
+        Map<String, Object> row = fetchMapForRow(tableName, columnNames, columnValues);
+        if(row == null){
+            return false;
+        }
+
+        insert.InsertIntoTableValues(tableName, row);
+        
+        return true;
+    }
+
+    private int getIndexOfClosingBracket(List<String> tokens){
+        if(!tokenListValidation(tokens)){
+            PrintInfo.getInstance().commandError();
+            return -1;
+        }
+        int t=0;
+        for(;;){
+            if(endOfQuery(tokens)){
+                return -1;
+            }
+            if((")").equals(tokens.get(t))){
+                break;
+            }
+            t++;
+        }
+        return t;
+    }
+    
+    private Map<String, Object> fetchMapForRow(String tableName,List<String> columnNames, List<String> columnValues){
+        Map<String, Object> row = new LinkedHashMap<>();
+        Map<String , String> columnAndDatatype = BasicInformation.getInstance().fetchDatabase().tables.get(tableName).columnNamesAndInputType;
+        for(int t=0; t<columnNames.size(); t++){
+            if(!columnAndDatatype.containsKey(columnNames.get(t).toUpperCase())){
+                PrintInfo.getInstance().printError("\n\tRow does not exist\n");
+                return null;
+            }
+            row.put(columnNames.get(t).toUpperCase(), columnValues.get(t));
+        }
+        return row;
+    }
+
+
+    private List<String> getBracketTokens(List<String> tokens, boolean RegexRequired){
+        if(!tokenListValidation(tokens)){
+            PrintInfo.getInstance().commandError();
+            return null;
+        }
+
+        List<String> newTokens = new ArrayList<>();
+
+        for(;;){
+            if(!tokenListValidation(tokens)){
+                PrintInfo.getInstance().commandError();
+                return null;
+            }
+            if(!regexValidationOfName(tokens.get(0)) && RegexRequired){
+                PrintInfo.getInstance().commandError();
+                return null;
+            }
+            newTokens.add(tokens.get(0));
+            tokens = getSubTokens(tokens);
+            if(")".equals(tokens.get(0))){
+                break;
+            }
+            if(!",".equals(tokens.get(0))){
+                PrintInfo.getInstance().commandError();
+                return null;
+            }
+            if(tokens == null){
+                PrintInfo.getInstance().commandError();
+                return null;
+            }
+            tokens = getSubTokens(tokens);
+        }
+        return newTokens;
+    }
+
+
 
     private boolean useDatabase(List<String> tokens){
         if(!tokenListValidation(tokens)){

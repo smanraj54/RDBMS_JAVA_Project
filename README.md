@@ -6,9 +6,9 @@
 ## The Team
 * Team Name - DP 25
 * Team Members:
-    * [Dhrumil Rakesh Shah](Dhrumil.Shah@dal.ca)
-    * [Manraj Singh](mn697903@dal.ca)
-    * [Vishvesh Naik](vishvesh@dal.ca)
+    * (B00870600) [Dhrumil Rakesh Shah](Dhrumil.Shah@dal.ca)
+    * (B00877934) [Manraj Singh](mn697903@dal.ca)
+    * (B00885077) [Vishvesh Naik](vishvesh@dal.ca)
 
 ## Project
 * Project Name - DVM Relational Database System

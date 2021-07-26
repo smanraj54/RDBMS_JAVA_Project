@@ -16,9 +16,6 @@ public class InputFromUser {
   private static InputFromUser instance = null;
 
   private InputFromUser() {
-    PrintInfo.getInstance().printMessage("\n\t####################################\n");
-    PrintInfo.getInstance().printMessage("Welcome to DVM Relational Database:\n");
-    PrintInfo.getInstance().printMessage("\n\t####################################\n");
     try {
       new BasicFolderStructure();
     } catch (IOException ioException) {

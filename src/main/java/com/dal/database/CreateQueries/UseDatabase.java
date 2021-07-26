@@ -9,12 +9,13 @@ public class UseDatabase {
     public UseDatabase(){}
 
     public boolean UseThisDatabase(String database){
+        database = database.toUpperCase();
         if(AllDatabases.getInstance().databaseMap.containsKey(database)){
             BasicInformation.getInstance().setLockedDatabase(database);
             return true;
         }
         else{
-            PrintInfo.getInstance().printError("Database does not exist!!");
+            PrintInfo.getInstance().printError("\n\tDatabase does not exist!!\n");
         }
         return false;
     }

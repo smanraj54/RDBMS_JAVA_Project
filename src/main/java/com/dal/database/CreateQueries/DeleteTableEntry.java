@@ -16,7 +16,7 @@ public class DeleteTableEntry {
     public DeleteTableEntry(){
         database = BasicInformation.getInstance().fetchDatabase();
         if(database == null) {
-            PrintInfo.getInstance().printError("\n\tSelect Database First!!!!");
+            PrintInfo.getInstance().printError("\n\tSelect Database First!!!!\n");
             return;
         }
 

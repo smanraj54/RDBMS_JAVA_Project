@@ -24,11 +24,12 @@ public class CreateTable {
     }
 
     public boolean addTable(String tableName, Map<String, String> columnNamesAndInputType){
+        tableName = tableName.toUpperCase();
         if(database == null){
             return false;
         }
         if(database.tables.containsKey(tableName)){
-            PrintInfo.getInstance().printMessage("\n\tTable name already present");
+            PrintInfo.getInstance().printMessage("\n\tTable name already present\n");
             return false;
         }
         Table table = new Table();

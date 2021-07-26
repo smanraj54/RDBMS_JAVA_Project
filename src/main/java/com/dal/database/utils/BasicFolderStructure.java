@@ -9,10 +9,12 @@ public class BasicFolderStructure {
 
   String usersDataPath = "./RawData/LoginUsersData/";
   String databaseDataPath = "./RawData/databases/";
+  String logFilesPath = "./RawData/Logs/";
 
   public BasicFolderStructure() throws IOException {
     createFolderStructure(usersDataPath);
     createFolderStructure(databaseDataPath);
+    createFolderStructure(logFilesPath);
   }
 
   private void createFolderStructure(String pathToCreate) throws IOException {

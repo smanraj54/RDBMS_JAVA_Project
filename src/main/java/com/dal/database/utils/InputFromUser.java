@@ -1,6 +1,7 @@
 package com.dal.database.utils;
 
 import com.dal.database.CreateQueries.Commit;
+import com.dal.database.CreateQueries.CreateDatabase;
 import com.dal.database.Login.AttemptLogin;
 import com.dal.database.Login.FetchAllUsers;
 import com.dal.database.PrintInfo;
@@ -10,6 +11,8 @@ import com.dal.database.queryManagement.SplitQuery;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class InputFromUser {
 
@@ -54,18 +57,18 @@ public class InputFromUser {
             return false;
         }
 
-        List<String> newTokens = null;
-        if(tokens.size()>1){
-            newTokens = tokens.subList(1, tokens.size());
-        }
+        List<String> newTokens = getSubTokens(tokens);
+
         switch (tokens.get(0).toLowerCase()){
             case "exit":{
                 return(exitQuery(newTokens));
             }
             case "commit":{
-                commit(newTokens);
-                return false;
+                return(commit(newTokens));
 
+            }
+            case "create":{
+                return(create(newTokens));
             }
             default :{
                 PrintInfo.getInstance().commandError();
@@ -98,5 +101,62 @@ public class InputFromUser {
 
     }
 
+    private boolean create(List<String> tokens){
+        if(tokenListValidation(tokens)){
+            switch (tokens.get(0).toLowerCase()){
+                case "database" : {
+                    createDatabase(getSubTokens(tokens));
+                    break;
+                }
+                default:{
+                    PrintInfo.getInstance().commandError();
+                    return false;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private boolean createDatabase(List<String> tokens){
+        if(!tokenListValidation(tokens)){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        if(!regexValidationOfName(tokens.get(0))){
+            PrintInfo.getInstance().printError("\n\tDatabase Name should only contain characters\n");
+            return false;
+        }
+        String name = tokens.get(0);
+        tokens = getSubTokens(tokens);
+        if(tokens == null || tokens.size()<=0 || (";").equals(tokens.get(0))){
+            CreateDatabase createDatabase = new CreateDatabase();
+            return(createDatabase.addDatabase(name));
+        }
+        PrintInfo.getInstance().commandError();
+        return false;
+    }
+
+    private boolean regexValidationOfName(String name){
+        String regex = "^[a-zA-Z]++$";
+
+        Pattern VALIDATE = Pattern.compile(regex,
+                Pattern.CASE_INSENSITIVE);
+        if (!VALIDATE.matcher(name).matches()) {
+            return false;
+        }
+        return true;
+    }
+    private List<String> getSubTokens(List<String> tokens){
+        List<String> newTokens = null;
+        if(tokens.size()>1){
+            newTokens = tokens.subList(1, tokens.size());
+        }
+        return newTokens;
+    }
+
+    private boolean tokenListValidation(List<String> tokens){
+        return(tokens != null && tokens.size()>=1);
+    }
 
 }

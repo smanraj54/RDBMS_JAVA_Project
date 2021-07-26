@@ -82,6 +82,9 @@ public class InputFromUser {
             case "insert":{
                 return InsertIntoTable(newTokens);
             }
+            case "rollback":{
+                return RollbackValues(newTokens);
+            }
 
             default :{
                 PrintInfo.getInstance().commandError();
@@ -89,6 +92,17 @@ public class InputFromUser {
             }
         }
 
+    }
+
+    private boolean RollbackValues(List<String> tokens){
+        if(tokens == null || tokens.size()<=0 || (";").equals(tokens.get(0))){
+            PrintInfo.getInstance().printMessage("\n\tRollback Successful!\n\t");
+            new Rollback();
+            return true;
+        }
+
+        PrintInfo.getInstance().commandError();
+        return false;
     }
 
     private boolean InsertIntoTable(List<String> tokens){
@@ -166,75 +180,6 @@ public class InputFromUser {
         
         return true;
     }
-
-    private int getIndexOfClosingBracket(List<String> tokens){
-        if(!tokenListValidation(tokens)){
-            PrintInfo.getInstance().commandError();
-            return -1;
-        }
-        int t=0;
-        for(;;){
-            if(endOfQuery(tokens)){
-                return -1;
-            }
-            if((")").equals(tokens.get(t))){
-                break;
-            }
-            t++;
-        }
-        return t;
-    }
-    
-    private Map<String, Object> fetchMapForRow(String tableName,List<String> columnNames, List<String> columnValues){
-        Map<String, Object> row = new LinkedHashMap<>();
-        Map<String , String> columnAndDatatype = BasicInformation.getInstance().fetchDatabase().tables.get(tableName).columnNamesAndInputType;
-        for(int t=0; t<columnNames.size(); t++){
-            if(!columnAndDatatype.containsKey(columnNames.get(t).toUpperCase())){
-                PrintInfo.getInstance().printError("\n\tRow does not exist\n");
-                return null;
-            }
-            row.put(columnNames.get(t).toUpperCase(), columnValues.get(t));
-        }
-        return row;
-    }
-
-
-    private List<String> getBracketTokens(List<String> tokens, boolean RegexRequired){
-        if(!tokenListValidation(tokens)){
-            PrintInfo.getInstance().commandError();
-            return null;
-        }
-
-        List<String> newTokens = new ArrayList<>();
-
-        for(;;){
-            if(!tokenListValidation(tokens)){
-                PrintInfo.getInstance().commandError();
-                return null;
-            }
-            if(!regexValidationOfName(tokens.get(0)) && RegexRequired){
-                PrintInfo.getInstance().commandError();
-                return null;
-            }
-            newTokens.add(tokens.get(0));
-            tokens = getSubTokens(tokens);
-            if(")".equals(tokens.get(0))){
-                break;
-            }
-            if(!",".equals(tokens.get(0))){
-                PrintInfo.getInstance().commandError();
-                return null;
-            }
-            if(tokens == null){
-                PrintInfo.getInstance().commandError();
-                return null;
-            }
-            tokens = getSubTokens(tokens);
-        }
-        return newTokens;
-    }
-
-
 
     private boolean useDatabase(List<String> tokens){
         if(!tokenListValidation(tokens)){
@@ -482,5 +427,117 @@ public class InputFromUser {
     private boolean endOfQuery(List<String> tokens){
         return (tokens == null || tokens.size()<=0 || (";").equals(tokens.get(0)));
     }
+
+    private int getIndexOfClosingBracket(List<String> tokens){
+        if(!tokenListValidation(tokens)){
+            PrintInfo.getInstance().commandError();
+            return -1;
+        }
+        int t=0;
+        for(;;){
+            if(endOfQuery(tokens)){
+                return -1;
+            }
+            if((")").equals(tokens.get(t))){
+                break;
+            }
+            t++;
+        }
+        return t;
+    }
+
+    private Map<String, Object> fetchMapForRow(String tableName,List<String> columnNames, List<String> columnValues){
+        Map<String, Object> row = new LinkedHashMap<>();
+        Map<String , String> columnAndDatatype = BasicInformation.getInstance().fetchDatabase().tables.get(tableName).columnNamesAndInputType;
+        for(int t=0; t<columnNames.size(); t++){
+            if(!columnAndDatatype.containsKey(columnNames.get(t).toUpperCase())){
+                PrintInfo.getInstance().printError("\n\tRow does not exist\n");
+                return null;
+            }
+            switch(columnAndDatatype.get(columnNames.get(t)).toLowerCase()){
+                case "integer":{
+                    try{
+                        Integer.parseInt(columnValues.get(t));
+                        row.put(columnNames.get(t).toUpperCase(), columnValues.get(t));
+                    }catch(Exception e){
+                        PrintInfo.getInstance().printError("\n\tData type of input parameter: \" "+columnNames.get(t)+" \" is wrong\n");
+                        return null;
+                    }
+                }
+                case "double":{
+                    try{
+                        Double.parseDouble(columnValues.get(t));
+                        row.put(columnNames.get(t).toUpperCase(), columnValues.get(t));
+                    }catch(Exception e){
+                        PrintInfo.getInstance().printError("\n\tData type of input parameter: \" "+columnNames.get(t)+" \" is wrong\n");
+                        return null;
+                    }
+                }
+                case "boolean":{
+                    try{
+                        Boolean.parseBoolean(columnValues.get(t));
+                        row.put(columnNames.get(t).toUpperCase(), columnValues.get(t));
+                    }catch(Exception e){
+                        PrintInfo.getInstance().printError("\n\tData type of input parameter: \" "+columnNames.get(t)+" \" is wrong\n");
+                        return null;
+                    }
+                }
+                case "string":{
+                    try{
+                        (columnValues.get(t)).toString();
+                        row.put(columnNames.get(t).toUpperCase(), columnValues.get(t));
+                    }catch(Exception e){
+                        PrintInfo.getInstance().printError("\n\tData type of input parameter: \" "+columnNames.get(t)+" \" is wrong\n");
+                        return null;
+                    }
+                }
+                default:{
+                    PrintInfo.getInstance().printError("\n\tData type of input parameter: \" "+columnNames.get(t)+" \" is wrong\n");
+                    return null;
+                }
+            }
+
+
+        }
+        return row;
+    }
+
+
+    private List<String> getBracketTokens(List<String> tokens, boolean RegexRequired){
+        if(!tokenListValidation(tokens)){
+            PrintInfo.getInstance().commandError();
+            return null;
+        }
+
+        List<String> newTokens = new ArrayList<>();
+
+        for(;;){
+            if(!tokenListValidation(tokens)){
+                PrintInfo.getInstance().commandError();
+                return null;
+            }
+            if(!regexValidationOfName(tokens.get(0)) && RegexRequired){
+                PrintInfo.getInstance().commandError();
+                return null;
+            }
+            newTokens.add(tokens.get(0));
+            tokens = getSubTokens(tokens);
+            if(")".equals(tokens.get(0))){
+                break;
+            }
+            if(!",".equals(tokens.get(0))){
+                PrintInfo.getInstance().commandError();
+                return null;
+            }
+            if(tokens == null){
+                PrintInfo.getInstance().commandError();
+                return null;
+            }
+            tokens = getSubTokens(tokens);
+        }
+        return newTokens;
+    }
+
+
 
 }

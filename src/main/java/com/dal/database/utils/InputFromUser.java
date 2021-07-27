@@ -4,6 +4,7 @@ import com.dal.database.CreateQueries.*;
 import com.dal.database.DataStorage.AllDatabases;
 import com.dal.database.DataStorage.Database;
 import com.dal.database.DataStorage.Table;
+import com.dal.database.DataStorage.TableRowEntryStructure;
 import com.dal.database.Login.AttemptLogin;
 import com.dal.database.PrintInfo;
 import com.dal.database.fetchdatabase.FetchDataFromFiles;
@@ -192,10 +193,10 @@ public class InputFromUser {
         }
         Select select = new Select();
         if(columnNames == null){
-            select.printThisTable(database.tables.get(tableName));
+            select.printThisTable(table);
         }
         else{
-            select.printThisTable(database.tables.get(tableName), columnMap);
+            select.printThisTable(table, columnMap);
         }
 
         return true;
@@ -203,7 +204,146 @@ public class InputFromUser {
 
     private Table whereConditionEvaluation(List<String> tokens, Table table){
         Table newTable = table.duplicateTable();
+        List<TableRowEntryStructure> rows = conditionRecursion(table, tokens);
+        if(rows == null){
+            return null;
+        }
+
+        newTable.rows = rows;
         return newTable;
+    }
+
+    private List<TableRowEntryStructure> conditionRecursion(Table table, List<String> tokens){
+        List<TableRowEntryStructure> firstList = conditionEvaluation(table, tokens);
+        if(firstList == null){
+            return null;
+        }
+
+        tokens = getSubTokens(getSubTokens(tokens));
+        if("'".equals(tokens.get(0))){
+            tokens = getSubTokens(tokens);
+        }
+        tokens = getSubTokens(tokens);
+        if(!endOfQuery(tokens) && "'".equals(tokens.get(0))){
+            tokens = getSubTokens(tokens);
+        }
+
+        if(endOfQuery(tokens)){
+            return firstList;
+        }
+
+        String operator = tokens.get(0);
+        tokens = getSubTokens(tokens);
+        List<TableRowEntryStructure> secondList = conditionRecursion(table,tokens );
+        if(secondList == null){
+            return null;
+        }
+        switch(operator.toUpperCase()){
+            case "AND":{
+                return intersection(firstList, secondList);
+            }
+            case "OR":{
+                return union(firstList, secondList);
+            }
+            default:{
+                PrintInfo.getInstance().printError("\n\tOperator: '"+operator+"' not supported!!!\n");
+                return null;
+            }
+        }
+    }
+
+    private List<TableRowEntryStructure> intersection(List<TableRowEntryStructure> rows1, List<TableRowEntryStructure> rows2){
+        Set<TableRowEntryStructure> set = new HashSet<>();
+        List<TableRowEntryStructure> newRows = new ArrayList<>();
+        set.addAll(rows2);
+        for(TableRowEntryStructure row : rows1){
+            if(set.contains(row)){
+                newRows.add(row);
+            }
+        }
+        return newRows;
+    }
+    private List<TableRowEntryStructure> union(List<TableRowEntryStructure> rows1, List<TableRowEntryStructure> rows2){
+        Set<TableRowEntryStructure> set = new HashSet<>();
+        set.addAll(rows2);
+        set.addAll(rows1);
+
+        return new ArrayList<>(set);
+    }
+
+    private List<TableRowEntryStructure> conditionEvaluation(Table table, List<String> tokens){
+        List<TableRowEntryStructure> newList = new ArrayList<>();
+        if(endOfQuery(tokens) || table == null || table.rows == null || table.rows.size() <= 0){
+            PrintInfo.getInstance().commandError();
+            return null;
+        }
+        String columnName = tokens.get(0).toUpperCase();
+        tokens = getSubTokens(tokens);
+        if(endOfQuery(tokens)){
+            PrintInfo.getInstance().commandError();
+            return null;
+        }
+        String operator = tokens.get(0);
+        tokens = getSubTokens(tokens);
+        if(endOfQuery(tokens)){
+            PrintInfo.getInstance().commandError();
+            return null;
+        }
+        if("'".equals(tokens.get(0))){
+            tokens = getSubTokens(tokens);
+        }
+
+        String value = tokens.get(0);
+        tokens = getSubTokens(tokens);
+
+        if(!endOfQuery(tokens) && "'".equals(tokens.get(0))){
+            tokens = getSubTokens(tokens);
+        }
+
+        for(TableRowEntryStructure row : table.rows){
+            if(!row.Inputs.containsKey(columnName)){
+                PrintInfo.getInstance().printError("\n\tThe column name: "+columnName+" Does not exit in table!!!\n");
+                return null;
+            }
+            Object object = row.Inputs.get(columnName);
+            switch(operator){
+                case "=":{
+                    if(object != null && value.equals(object.toString())){
+                        newList.add(row);
+                    }
+                    break;
+                }case "!=":{
+                    if(object == null || !value.equals(object.toString())){
+                        newList.add(row);
+                    }
+                    break;
+                }case "<":{
+                    if(object != null && value.compareToIgnoreCase(object.toString())>0){
+                        newList.add(row);
+                    }
+                    break;
+                }case ">":{
+                    if(object != null && value.compareToIgnoreCase(object.toString())<0){
+                        newList.add(row);
+                    }
+                    break;
+                }case "<=":{
+                    if(object != null && value.compareToIgnoreCase(object.toString())>=0){
+                        newList.add(row);
+                    }
+                    break;
+                }case ">=":{
+                    if(object != null && value.compareToIgnoreCase(object.toString())<=0){
+                        newList.add(row);
+                    }
+                    break;
+                } default:{
+                    PrintInfo.getInstance().printError("\n\tEnter Correct where condition operator!!!!\n");
+                }
+
+            }
+        }
+        return newList;
     }
 
     private Map<String, String> columnListToMap(List<String> columns, Map<String, String> columnNamesWithType){

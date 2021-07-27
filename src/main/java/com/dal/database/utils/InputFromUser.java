@@ -446,6 +446,7 @@ public class InputFromUser {
     }
 
     private Map<String, Object> fetchMapForRow(String tableName,List<String> columnNames, List<String> columnValues){
+        tableName = tableName.toUpperCase();
         Map<String, Object> row = new LinkedHashMap<>();
         Map<String , String> columnAndDatatype = BasicInformation.getInstance().fetchDatabase().tables.get(tableName).columnNamesAndInputType;
         for(int t=0; t<columnNames.size(); t++){

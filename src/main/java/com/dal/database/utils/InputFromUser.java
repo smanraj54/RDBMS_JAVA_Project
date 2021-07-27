@@ -2,6 +2,7 @@ package com.dal.database.utils;
 
 import com.dal.database.CreateQueries.*;
 import com.dal.database.DataStorage.AllDatabases;
+import com.dal.database.DataStorage.Database;
 import com.dal.database.DataStorage.Table;
 import com.dal.database.Login.AttemptLogin;
 import com.dal.database.PrintInfo;
@@ -84,7 +85,9 @@ public class InputFromUser {
             case "rollback":{
                 return RollbackValues(newTokens);
             }
-
+            case "select":{
+                return selectQuery(newTokens);
+            }
             default :{
                 PrintInfo.getInstance().commandError();
                 return false;
@@ -93,15 +96,127 @@ public class InputFromUser {
 
     }
 
-    private boolean RollbackValues(List<String> tokens){
-        if(tokens == null || tokens.size()<=0 || (";").equals(tokens.get(0))){
-            PrintInfo.getInstance().printMessage("\n\tRollback Successful!\n\t");
-            new Rollback();
+    private boolean selectQuery(List<String> tokens){
+        if(!tableQueryBasicCheck()){
+            return false;
+        }
+        if(!tokenListValidation(tokens) || !("*".equalsIgnoreCase(tokens.get(0)) || "(".equalsIgnoreCase(tokens.get(0))) ){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        String val = tokens.get(0);
+        tokens = getSubTokens(tokens);
+        List<String> columnNames = null;
+        Map<String, String> columnMap = null;
+        if("(".equals(val)){
+            columnNames = getBracketTokens(tokens, true);
+            if(columnNames == null){
+                return false;
+            }
+            int index = getIndexOfClosingBracket(tokens);
+            if(index < 0){
+                PrintInfo.getInstance().commandError();
+                return false;
+            }
+            tokens = tokens.subList(index, tokens.size());
+            tokens = getSubTokens(tokens);
+        }
+        else if(!"*".equals(val)){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+
+        if(endOfQuery(tokens)){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+
+        if(!"From".equalsIgnoreCase(tokens.get(0))){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+
+        tokens = getSubTokens(tokens);
+
+        if(endOfQuery(tokens)){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+
+        String tableName = tokens.get(0);
+        tokens = getSubTokens(tokens);
+
+        if(!regexValidationOfName(tableName)){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+
+        tableName = tableName.toUpperCase();
+        Database database = BasicInformation.getInstance().fetchDatabase();
+        if (database == null || database.tables == null || !database.tables.containsKey(tableName)) {
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+
+        if(columnNames != null) {
+            columnMap = columnListToMap(columnNames, database.tables.get(tableName).columnNamesAndInputType);
+        }
+
+        if(endOfQuery(tokens)){
+            Select select = new Select();
+            if(columnNames == null){
+                select.printThisTable(database.tables.get(tableName));
+            }
+            else{
+                select.printThisTable(database.tables.get(tableName), columnMap);
+            }
             return true;
         }
 
-        PrintInfo.getInstance().commandError();
-        return false;
+        if(!"Where".equalsIgnoreCase(tokens.get(0))){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+
+        tokens = getSubTokens(tokens);
+
+        if(endOfQuery(tokens)){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+
+        Table table = whereConditionEvaluation(tokens, database.tables.get(tableName));
+        if(table == null){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        Select select = new Select();
+        if(columnNames == null){
+            select.printThisTable(database.tables.get(tableName));
+        }
+        else{
+            select.printThisTable(database.tables.get(tableName), columnMap);
+        }
+
+        return true;
+    }
+
+    private Table whereConditionEvaluation(List<String> tokens, Table table){
+        Table newTable = table.duplicateTable();
+        return newTable;
+    }
+
+    private Map<String, String> columnListToMap(List<String> columns, Map<String, String> columnNamesWithType){
+        Map<String, String> newColumnsMap = new LinkedHashMap<>();
+        for(String col : columns){
+            col = col.toUpperCase();
+            if(!columnNamesWithType.containsKey(col)){
+                PrintInfo.getInstance().printError("Column: '"+col+"' Does not exist!!!!");
+                return null;
+            }
+            newColumnsMap.put(col, columnNamesWithType.get(col));
+        }
+        return newColumnsMap;
     }
 
     private boolean InsertIntoTable(List<String> tokens){
@@ -178,6 +293,17 @@ public class InputFromUser {
         insert.InsertIntoTableValues(tableName, row);
         
         return true;
+    }
+
+    private boolean RollbackValues(List<String> tokens){
+        if(tokens == null || tokens.size()<=0 || (";").equals(tokens.get(0))){
+            PrintInfo.getInstance().printMessage("\n\tRollback Successful!\n\t");
+            new Rollback();
+            return true;
+        }
+
+        PrintInfo.getInstance().commandError();
+        return false;
     }
 
     private boolean useDatabase(List<String> tokens){

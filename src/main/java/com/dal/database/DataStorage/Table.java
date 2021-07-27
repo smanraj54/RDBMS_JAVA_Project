@@ -14,4 +14,12 @@ public class Table implements Serializable {
         rows = new ArrayList<>();
     }
 
+    public Table duplicateTable(){
+        Table dup = new Table();
+        dup.columnNamesAndInputType = this.columnNamesAndInputType;
+        dup.rows = new ArrayList<>(this.rows);
+        dup.tableName = this.tableName;
+        return dup;
+    }
+
 }

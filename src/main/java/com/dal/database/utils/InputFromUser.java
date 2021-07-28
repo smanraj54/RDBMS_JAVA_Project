@@ -67,6 +67,9 @@ public class InputFromUser {
             case "exit":{
                 return(exitQuery(newTokens));
             }
+            case "quit":{
+                return(exitQuery(newTokens));
+            }
             case "commit":{
                 return(commit(newTokens));
 
@@ -95,12 +98,64 @@ public class InputFromUser {
             case "update":{
                 return updateFromTable(newTokens);
             }
+            case "desc":{
+                return describeTable(newTokens);
+            }
+            case "describe":{
+                return describeTable(newTokens);
+            }
+            case "all":{
+                showTables(newTokens);
+                return true;
+            }
             default :{
                 PrintInfo.getInstance().commandError();
                 return false;
             }
         }
 
+    }
+
+    private boolean showTables(List<String> tokens){
+        if(!tableQueryBasicCheck()){
+            return false;
+        }
+        if(!tokenListValidation(tokens) || !"tables".equalsIgnoreCase(tokens.get(0))){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+
+        tokens = getSubTokens(tokens);
+
+        if(endOfQuery(tokens)){
+            ShowTables showtables = new ShowTables();
+            return true;
+        }
+        PrintInfo.getInstance().commandError();
+        return false;
+    }
+
+    private boolean describeTable(List<String> tokens){
+        if(!tableQueryBasicCheck()){
+            return false;
+        }
+        if(!tokenListValidation(tokens) ){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        String tableName = tokens.get(0).toUpperCase();
+        Table table = BasicInformation.getInstance().fetchDatabase().tables.get(tableName);
+        tokens = getSubTokens(tokens);
+        if(table == null){
+            PrintInfo.getInstance().printError("\n\tTable does not exist!!!!\n");
+            return false;
+        }
+        if(endOfQuery(tokens)){
+            DescribeTable desc = new DescribeTable();
+            return desc.descThisTable(table);
+        }
+        PrintInfo.getInstance().commandError();
+        return false;
     }
 
     private boolean updateFromTable(List<String> tokens){

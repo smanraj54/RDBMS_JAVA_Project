@@ -31,10 +31,10 @@ public class ReadObjectFromFile {
             System.out.println("Reading object was successful");
         } catch (Exception e) {
             e.printStackTrace();
-            RegisterUser registerUser = new RegisterUser();
+            /*RegisterUser registerUser = new RegisterUser();
             registerUser.registerNewUser("root", "root123");
             registerUser.registerNewUser("manu", "manu123");
-            registerUser.writeToObjectFile();
+            registerUser.writeToObjectFile();*/
         } finally {
             if(objectInputStream != null){
                 try {

@@ -753,7 +753,7 @@ public class InputFromUser {
       PrintInfo.getInstance().printError("\n\tTable Name should only contain characters\n");
       return false;
     }
-    String name = tokens.get(0);
+    String name = tokens.get(0).toUpperCase();
     tokens = getSubTokens(tokens);
     if (tokens == null || tokens.size() <= 0 || (";").equals(tokens.get(0))) {
       PrintInfo.getInstance().printError("\n\tEnter input columns for the tables\n");

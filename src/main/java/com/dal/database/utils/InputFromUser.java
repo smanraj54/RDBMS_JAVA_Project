@@ -610,16 +610,14 @@ public class InputFromUser {
       return false;
     }
 
-
     InsertIntoTable insert = new InsertIntoTable();
     Map<String, Object> row = fetchMapForRow(tableName, columnNames, columnValues);
     if (row == null) {
       return false;
     }
 
-    insert.InsertIntoTableValues(tableName, row);
+    return insert.InsertIntoTableValues(tableName, row);
 
-    return true;
   }
 
   private boolean RollbackValues(List<String> tokens) {
@@ -807,12 +805,12 @@ public class InputFromUser {
       }
       String columnName = tokens.get(0).toUpperCase();
       String columnType = tokens.get(1);
-      if (!regexValidationOfName(columnName) || !regexValidationOfName(columnType) || columnDataTypeValidation(columnType) == null) {
+      if (!regexValidationOfName(columnName) || !regexValidationOfName(columnType) || columnDataTypeValidation(columnType, columnsWithDataType) == null) {
         PrintInfo.getInstance().commandError();
         return null;
       }
 
-      columnType = columnDataTypeValidation(columnType);
+      columnType = columnDataTypeValidation(columnType, columnsWithDataType);
 
       columnsWithDataType.put(columnName, columnType);
       tokens = getSubTokens(getSubTokens(tokens));
@@ -851,7 +849,7 @@ public class InputFromUser {
     return (tokens != null && tokens.size() >= 1);
   }
 
-  private String columnDataTypeValidation(String datatype) {
+  private String columnDataTypeValidation(String datatype, Map<String, String> columnNameAndDataType) {
     switch (datatype.toLowerCase()) {
       case "string": {
         return "String";
@@ -869,10 +867,13 @@ public class InputFromUser {
         return "Integer";
       }
       default: {
+        if(columnNameAndDataType.containsKey(datatype.toUpperCase())){
+          return datatype.toUpperCase();
+        }
         return null;
       }
-
     }
+
   }
 
   private boolean tableQueryBasicCheck() {
@@ -960,7 +961,6 @@ public class InputFromUser {
           return null;
         }
       }
-
 
     }
     return row;

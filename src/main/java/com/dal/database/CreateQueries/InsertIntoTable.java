@@ -23,6 +23,16 @@ public class InsertIntoTable {
                 TableRowEntryStructure rowEntry = new TableRowEntryStructure();
                 //Map<String, Object> rowEntry = new LinkedHashMap<>();
                 for(Map.Entry<String, String> columnEntry : table.columnNamesAndInputType.entrySet()){
+                    if(!Inputs.containsKey(table.primaryKey)){
+                        PrintInfo.getInstance().printError("\n\tPrimary Key Cannot be NULL\n");
+                        return false;
+                    }
+                    for(TableRowEntryStructure row : table.rows){
+                        if(row.Inputs.get(table.primaryKey).toString().equalsIgnoreCase(Inputs.get(table.primaryKey).toString())){
+                            PrintInfo.getInstance().printError("Primary Key Cannot be duplicate\n");
+                            return false;
+                        }
+                    }
                     if(Inputs.containsKey(columnEntry.getKey())){
                         rowEntry.Inputs.put(columnEntry.getKey(), Inputs.get(columnEntry.getKey()));
                     }

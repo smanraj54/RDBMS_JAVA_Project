@@ -66,10 +66,16 @@ public class InputFromUser {
     printer.printMessage("\n\tSet password (alphanumeric) : ");
     final String password = scanner.nextLine();
     if (!Validation.isAlphaNumeric(password)) {
-      printer.printMessage("Password is not valid\n");
+      printer.printMessage("\n\tPassword is not valid");
     }
 
-    registerUser.registerNewUser(userName, password);
+    if (Validation.userExists(userName, password)) {
+      printer.printMessage("\n\tUser already exists");
+    } else {
+      if (registerUser.registerNewUser(userName, password) && registerUser.writeToObjectFile()) {
+        printer.printMessage("\n\tUser registered successfully!");
+      }
+    }
   }
 
 

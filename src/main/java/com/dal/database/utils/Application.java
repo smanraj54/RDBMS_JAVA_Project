@@ -33,7 +33,7 @@ public class Application {
     printer.printMessage("\t####################################\n");
 
     while (true) {
-      printer.printMessage("1. User registration.\n");
+      printer.printMessage("\n1. User registration.\n");
       printer.printMessage("2. User login.\n");
       printer.printMessage("3. Exit.\n");
       printer.printMessage("Select an option:\n");

@@ -25,6 +25,7 @@ public class Application {
     final AttemptLogin attemptLogin = new AttemptLogin();
     final Scanner scanner = new Scanner(System.in);
     final PrintInfo printer = PrintInfo.getInstance();
+    final InputFromUser inputFromUser = InputFromUser.getInstance();
 
 
     printer.printMessage("\t####################################\n");
@@ -32,7 +33,7 @@ public class Application {
     printer.printMessage("\t####################################\n");
 
     while (true) {
-      printer.printMessage("1. User registration.\n");
+      printer.printMessage("\n1. User registration.\n");
       printer.printMessage("2. User login.\n");
       printer.printMessage("3. Exit.\n");
       printer.printMessage("Select an option:\n");
@@ -40,9 +41,10 @@ public class Application {
 
       switch (input) {
         case "1":
-          continue;
+          inputFromUser.registerUser(scanner);
+          break;
         case "2":
-          InputFromUser.getInstance().inputsFromUser(new Scanner(System.in));
+          inputFromUser.inputsFromUser(scanner);
           break;
         case "3":
           System.exit(0);
@@ -56,17 +58,17 @@ public class Application {
         registerUser.registerNewUser("manu", "manu123");
         registerUser.writeToObjectFile();*/
 
-//        AttemptLogin login = new AttemptLogin();
-//        login.loginUser(new Scanner(System.in));
-//
+    //        AttemptLogin login = new AttemptLogin();
+    //        login.loginUser(new Scanner(System.in));
+    //
     //SplitQuery splitQuery = new SplitQuery(" Select (name, value, data) from oss_ref_data where name = 'erfverf vrfvr';");
-//        SplitQuery splitQuery = new SplitQuery(" CREATE TABLE Persons (" +
-//                "    PersonID int," +
-//                "    LastName String," +
-//                "    FirstName String," +
-//                "    Address String," +
-//                "    City String" +
-//                ");");
+    //        SplitQuery splitQuery = new SplitQuery(" CREATE TABLE Persons (" +
+    //                "    PersonID int," +
+    //                "    LastName String," +
+    //                "    FirstName String," +
+    //                "    Address String," +
+    //                "    City String" +
+    //                ");");
     //splitQuery.splitQueryTokens();
 
   }

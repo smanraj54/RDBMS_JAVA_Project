@@ -8,6 +8,8 @@ public class Table implements Serializable {
     public Map<String, String> columnNamesAndInputType;
     public List<TableRowEntryStructure> rows;
     public String tableName = null;
+    public String primaryKey = null;
+    public String foreignKey = null;
 
     public Table() {
         columnNamesAndInputType = new LinkedHashMap<>();

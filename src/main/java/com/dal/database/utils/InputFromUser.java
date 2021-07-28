@@ -17,10 +17,6 @@ import java.util.regex.Pattern;
 public class InputFromUser {
 
     private InputFromUser(){
-        PrintInfo.getInstance().printMessage("\n\t####################################\n");
-        PrintInfo.getInstance().printMessage("Welcome to DVM Relational Database:\n");
-        PrintInfo.getInstance().printMessage("\n\t####################################\n");
-
         try {
             new BasicFolderStructure();
         } catch (IOException ioException) {

@@ -34,6 +34,15 @@ public class CreateTable {
         }
         Table table = new Table();
         table.tableName = tableName;
+        if(columnNamesAndInputType.containsKey("PRIMARY")){
+            table.primaryKey = columnNamesAndInputType.get("PRIMARY").toUpperCase();
+            columnNamesAndInputType.remove("PRIMARY");
+        }
+        if(columnNamesAndInputType.containsKey("FOREIGN")){
+            table.foreignKey = columnNamesAndInputType.get("FOREIGN").toUpperCase();
+            columnNamesAndInputType.remove("FOREIGN");
+        }
+
         table.columnNamesAndInputType = columnNamesAndInputType;
         database.tables.put(tableName, table);
         WriteDatabaseToFile.getInstance().writeThisDatabasesList(AllDatabases.getInstance());

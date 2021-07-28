@@ -32,7 +32,17 @@ public class DescribeTable {
                 +"\t\t----->\t\tTableName:: "+table.tableName + "\n");
         PrintInfo.getInstance().printMessage("#----------------------------------------------#\n");
         for(Map.Entry<String, String> entry : table.columnNamesAndInputType.entrySet()){
-            PrintInfo.getInstance().printMessage("\n\t\t"+entry.getKey()+"\t\t----->\t\t"+ entry.getValue());
+            if(table.primaryKey != null && table.primaryKey.equalsIgnoreCase(entry.getKey())){
+                PrintInfo.getInstance().printMessage("\n\t\t*Primary Key:");
+            }
+            else if(table.foreignKey != null && table.foreignKey.equalsIgnoreCase(entry.getKey())){
+                PrintInfo.getInstance().printMessage("\n\t\t*Foreign Key:");
+            }
+            else{
+                PrintInfo.getInstance().printMessage("\n\t\t\t\t\t");
+            }
+
+            PrintInfo.getInstance().printMessage("\t\t"+entry.getKey()+"\t\t----->\t\t"+ entry.getValue());
         }
         PrintInfo.getInstance().printMessage("\n#----------------------------------------------#\n");
 

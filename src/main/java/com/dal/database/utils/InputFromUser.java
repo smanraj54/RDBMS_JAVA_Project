@@ -1,14 +1,12 @@
 package com.dal.database.utils;
 
 import com.dal.database.CreateQueries.*;
-import com.dal.database.DataStorage.AllDatabases;
 import com.dal.database.DataStorage.Database;
 import com.dal.database.DataStorage.Table;
 import com.dal.database.DataStorage.TableRowEntryStructure;
 import com.dal.database.Login.AttemptLogin;
 import com.dal.database.Login.RegisterUser;
 import com.dal.database.PrintInfo;
-import com.dal.database.fetchdatabase.FetchDataFromFiles;
 import com.dal.database.queryManagement.SplitQuery;
 
 import java.io.IOException;
@@ -69,10 +67,12 @@ public class InputFromUser {
       printer.printMessage("\n\tPassword is not valid");
     }
 
+    final String hashedPassword = HashAlgorithm.getSHA256Hash(password);
+
     if (Validation.userExists(userName, password)) {
       printer.printMessage("\n\tUser already exists");
     } else {
-      if (registerUser.registerNewUser(userName, password) && registerUser.writeToObjectFile()) {
+      if (registerUser.registerNewUser(userName, hashedPassword) && registerUser.writeToObjectFile()) {
         printer.printMessage("\n\tUser registered successfully!");
       }
     }

@@ -53,10 +53,6 @@ public class Application {
       }
     }
 
-        /*
-        registerUser.registerNewUser("root", "root123");
-        registerUser.registerNewUser("manu", "manu123");
-        registerUser.writeToObjectFile();*/
 
     //        AttemptLogin login = new AttemptLogin();
     //        login.loginUser(new Scanner(System.in));

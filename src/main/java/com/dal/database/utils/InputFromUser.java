@@ -128,9 +128,12 @@ public class InputFromUser {
         return describeTable(newTokens);
       }
       case "all": {
-        showTables(newTokens);
-        return true;
+        return showTables(newTokens);
       }
+      case "erd": {
+        return erdDiagram(newTokens);
+      }
+
       default: {
         PrintInfo.getInstance().commandError();
         return false;
@@ -689,6 +692,16 @@ public class InputFromUser {
 
   }
 
+  private boolean erdDiagram(List<String> tokens){
+    if(!endOfQuery(tokens)){
+      PrintInfo.getInstance().commandError();
+      return false;
+    }
+    ERDDiagram erd = new ERDDiagram();
+    erd.makeERDDiagram();
+    return true;
+  }
+
   private boolean create(List<String> tokens) {
     if (tokenListValidation(tokens)) {
       switch (tokens.get(0).toLowerCase()) {
@@ -952,7 +965,6 @@ public class InputFromUser {
     }
     return row;
   }
-
 
   private List<String> getBracketTokens(List<String> tokens, boolean RegexRequired) {
     if (!tokenListValidation(tokens)) {

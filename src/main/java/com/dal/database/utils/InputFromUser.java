@@ -89,11 +89,113 @@ public class InputFromUser {
             case "select":{
                 return selectQuery(newTokens);
             }
+            case "delete":{
+                return deleteFromTable(newTokens);
+            }
+            case "update":{
+                return updateFromTable(newTokens);
+            }
             default :{
                 PrintInfo.getInstance().commandError();
                 return false;
             }
         }
+
+    }
+
+    private boolean updateFromTable(List<String> tokens){
+        if(!tableQueryBasicCheck()){
+            return false;
+        }
+        if(!tokenListValidation(tokens) ){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        String tableName = tokens.get(0).toUpperCase();
+        Table table = BasicInformation.getInstance().fetchDatabase().tables.get(tableName);
+        tokens = getSubTokens(tokens);
+        if(table == null){
+            PrintInfo.getInstance().printError("\n\tTable does not exist!!!!\n");
+            return false;
+        }
+        if(endOfQuery(tokens) || !"set".equalsIgnoreCase(tokens.get(0))){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        tokens = getSubTokens(tokens);
+        if(endOfQuery(tokens)){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        String columnName = tokens.get(0).toUpperCase();
+        tokens = getSubTokens(tokens);
+        if(endOfQuery(tokens)){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        tokens = getSubTokens(tokens);
+        if(endOfQuery(tokens)){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        if("'".equals(tokens.get(0))){
+            tokens = getSubTokens(tokens);
+            if(endOfQuery(tokens)){
+                PrintInfo.getInstance().commandError();
+                return false;
+            }
+        }
+        String value = tokens.get(0);
+        tokens = getSubTokens(tokens);
+        if("'".equals(tokens.get(0))){
+            tokens = getSubTokens(tokens);
+        }
+        UpdateTable update = new UpdateTable();
+        if(endOfQuery(tokens)){
+            return update.updateThisTable(table, table, columnName, value);
+        }
+        if(!"where".equalsIgnoreCase(tokens.get(0))){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        tokens = getSubTokens(tokens);
+        Table updateTable = whereConditionEvaluation(tokens, table);
+        return update.updateThisTable(table, updateTable, columnName, value);
+
+    }
+
+    private boolean deleteFromTable(List<String> tokens){
+        if(!tableQueryBasicCheck()){
+            return false;
+        }
+        if(!tokenListValidation(tokens) || !"FROM".equalsIgnoreCase(tokens.get(0))){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        tokens = getSubTokens(tokens);
+        if(endOfQuery(tokens)){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        String tableName = tokens.get(0).toUpperCase();
+        Table table = BasicInformation.getInstance().fetchDatabase().tables.get(tableName);
+        tokens = getSubTokens(tokens);
+        if(table == null){
+            PrintInfo.getInstance().printError("\n\tTable does not exist!!!!\n");
+            return false;
+        }
+        DeleteTableEntry delete = new DeleteTableEntry();
+        if(endOfQuery(tokens)){
+            return delete.deleteTableEntries(table);
+
+        }
+        if(!"where".equalsIgnoreCase(tokens.get(0))){
+            PrintInfo.getInstance().commandError();
+            return false;
+        }
+        tokens = getSubTokens(tokens);
+        Table removeTable = whereConditionEvaluation(tokens, table);
+        return delete.deleteTableEntries(table, removeTable);
 
     }
 

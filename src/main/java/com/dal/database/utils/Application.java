@@ -12,17 +12,12 @@ public class Application {
 
   public static String pathOfUsers = "./RawData/LoginUsersData/AllUsers";
   public static String pathOfDataBase = "./RawData/databases/allDatabases";
-  public static String pathOfGeneralLogFiles = "./RawData/Logs/GeneralLogs";
-  public static String pathOfEventLogFiles = "./RawData/Logs/EventLogs";
-  public static String pathOfQueryLogFiles = "./RawData/Logs/QueryLogs";
 
   public static void main(String[] args) {
 
     FetchDataFromFiles.fetchAllDatabases();
     FetchDataFromFiles.fetchAllUsers();
 
-    final RegisterUser registerUser = new RegisterUser();
-    final AttemptLogin attemptLogin = new AttemptLogin();
     final Scanner scanner = new Scanner(System.in);
     final PrintInfo printer = PrintInfo.getInstance();
     final InputFromUser inputFromUser = InputFromUser.getInstance();

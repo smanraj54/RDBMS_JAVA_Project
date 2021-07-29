@@ -36,9 +36,8 @@ public class Validation {
   public static boolean userExists(String userName, String password) {
 
     Map<String, UserDetails> usersMap = AllUsers.getInstance().getUsersList();
-    final String hashedPassword = HashAlgorithm.getSHA256Hash(password);
     try {
-      if (usersMap.containsKey(userName) && (usersMap.get(userName)).getPassword().equals(hashedPassword)) {
+      if (usersMap.containsKey(userName)) {
         return true;
       } else {
         return false;

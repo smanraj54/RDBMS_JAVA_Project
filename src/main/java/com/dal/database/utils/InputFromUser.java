@@ -133,6 +133,9 @@ public class InputFromUser {
       case "erd": {
         return erdDiagram(newTokens);
       }
+      case "sqldump": {
+        return sqlDump(newTokens);
+      }
 
       default: {
         PrintInfo.getInstance().commandError();
@@ -140,6 +143,30 @@ public class InputFromUser {
       }
     }
 
+  }
+
+  private boolean sqlDump(List<String> tokens){
+
+    if(endOfQuery(tokens) || !tableQueryBasicCheck()){
+      PrintInfo.getInstance().commandError();
+      return false;
+    }
+    String key = tokens.get(0).toLowerCase();
+    tokens = getSubTokens(tokens);
+    if(!endOfQuery(tokens)){
+      PrintInfo.getInstance().commandError();
+      return false;
+    }
+    SQLDump sqlDumpData = new SQLDump();
+    if(key.equalsIgnoreCase("save")){
+      sqlDumpData.writeSQLDump();
+      return true;
+    }
+    else if(key.equalsIgnoreCase("get")){
+      sqlDumpData.readSQL();
+      return true;
+    }
+    return false;
   }
 
   private boolean showTables(List<String> tokens) {

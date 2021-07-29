@@ -1,11 +1,9 @@
 package com.dal.database.utils;
 
-import com.dal.database.Login.AttemptLogin;
-import com.dal.database.Login.RegisterUser;
 import com.dal.database.PrintInfo;
 import com.dal.database.fetchdatabase.FetchDataFromFiles;
-import com.dal.database.queryManagement.SplitQuery;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Application {
@@ -13,7 +11,7 @@ public class Application {
   public static String pathOfUsers = "./RawData/LoginUsersData/AllUsers";
   public static String pathOfDataBase = "./RawData/databases/allDatabases";
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
 
     FetchDataFromFiles.fetchAllDatabases();
     FetchDataFromFiles.fetchAllUsers();
@@ -47,21 +45,5 @@ public class Application {
           break;
       }
     }
-
-
-    //        AttemptLogin login = new AttemptLogin();
-    //        login.loginUser(new Scanner(System.in));
-    //
-    //SplitQuery splitQuery = new SplitQuery(" Select (name, value, data) from oss_ref_data where name = 'erfverf vrfvr';");
-    //        SplitQuery splitQuery = new SplitQuery(" CREATE TABLE Persons (" +
-    //                "    PersonID int," +
-    //                "    LastName String," +
-    //                "    FirstName String," +
-    //                "    Address String," +
-    //                "    City String" +
-    //                ");");
-    //splitQuery.splitQueryTokens();
-
   }
-
 }

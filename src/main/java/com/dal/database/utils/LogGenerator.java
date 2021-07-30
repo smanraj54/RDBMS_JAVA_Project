@@ -10,7 +10,7 @@ public class LogGenerator {
   private static LogGenerator instance = null;
 
   private LogGenerator() {
-    // required private constructor
+    logFileGenerator();
   }
 
   public static LogGenerator getInstance() {
@@ -29,7 +29,7 @@ public class LogGenerator {
   FileWriter general;
   FileWriter query;
 
-  public void logFileGenerator() {
+  private void logFileGenerator() {
     try {
       File eventFile = new File("./RawData/Logs/EventLogs.txt"); //default event log text file
       File generalFile = new File("./RawData/Logs/GeneralLogs.txt");  //default general log text

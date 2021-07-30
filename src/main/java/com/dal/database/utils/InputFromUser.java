@@ -44,6 +44,9 @@ public class InputFromUser {
 
       System.out.print(BasicInformation.getInstance().getLoginUser() + "@DVM.sql >>>>> ");
       String input = sc.nextLine();
+      LogGenerator.getInstance().writeToQueryLogFile(input + "\n");
+      LogGenerator.getInstance().writeToGeneralLogFile(input + "\n");
+      LogGenerator.getInstance().writeToEventLogFile(input + "\n");
       SplitQuery splitQuery = new SplitQuery(input);
       List<String> inputTokens = splitQuery.splitQueryTokens();
       if (!evaluateInput(inputTokens)) {

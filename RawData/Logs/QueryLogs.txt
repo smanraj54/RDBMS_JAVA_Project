@@ -1,0 +1,21 @@
+show databases
+
+use FIRST
+
+exit
+
+show databases
+insert
+exit
+show databases
+select 
+use COUNTRYERD
+all tables 
+erd
+create table manrajSingh ( rows int, name string, age int, money double, primary rows, foreign money)
+show tables
+all tables
+describe ManrajSingh
+select * from city
+sqldump save
+show databases

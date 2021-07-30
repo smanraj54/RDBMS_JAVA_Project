@@ -44,6 +44,9 @@ public class InputFromUser {
 
       System.out.print(BasicInformation.getInstance().getLoginUser() + "@DVM.sql >>>>> ");
       String input = sc.nextLine();
+      LogGenerator.getInstance().writeToQueryLogFile(input + "\n");
+      LogGenerator.getInstance().writeToGeneralLogFile(input + "\n");
+      LogGenerator.getInstance().writeToEventLogFile(input + "\n");
       SplitQuery splitQuery = new SplitQuery(input);
       List<String> inputTokens = splitQuery.splitQueryTokens();
       if (!evaluateInput(inputTokens)) {
@@ -136,6 +139,9 @@ public class InputFromUser {
       case "sqldump": {
         return sqlDump(newTokens);
       }
+      case "drop": {
+        return dropDatabase(newTokens);
+      }
 
       default: {
         PrintInfo.getInstance().commandError();
@@ -143,6 +149,29 @@ public class InputFromUser {
       }
     }
 
+  }
+
+  private boolean dropDatabase(List<String> tokens){
+
+    if(endOfQuery(tokens) || !tokens.get(0).equalsIgnoreCase("database")){
+      PrintInfo.getInstance().commandError();
+      return false;
+    }
+
+    tokens = getSubTokens(tokens);
+    if(endOfQuery(tokens)){
+      PrintInfo.getInstance().commandError();
+      return false;
+    }
+    String databaseName = tokens.get(0).toUpperCase();
+    tokens = getSubTokens(tokens);
+    if(endOfQuery(tokens)){
+      DropDatabase dropDatabase = new DropDatabase();
+      return dropDatabase.dropThisDatabase(databaseName);
+    }
+
+    PrintInfo.getInstance().commandError();
+    return false;
   }
 
   private boolean sqlDump(List<String> tokens){
@@ -723,7 +752,7 @@ public class InputFromUser {
       return false;
     }
     ERDDiagram erd = new ERDDiagram();
-    erd.makeERDDiagram();
+    erd.erdDiagram();
     return true;
   }
 

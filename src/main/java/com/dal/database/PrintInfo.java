@@ -1,5 +1,7 @@
 package com.dal.database;
 
+import com.dal.database.utils.LogGenerator;
+
 import static java.lang.Thread.sleep;
 
 public class PrintInfo {
@@ -19,6 +21,7 @@ public class PrintInfo {
 
   public void printError(String message) {
     System.err.print(message);
+    LogGenerator.getInstance().writeToEventLogFile("Error: "+message + "\n");
     try {
       sleep(300);
     } catch (InterruptedException e) {
@@ -28,10 +31,13 @@ public class PrintInfo {
 
   public void printMessage(String message) {
     System.out.print(message);
+    LogGenerator.getInstance().writeToGeneralLogFile(message + "\n");
+    LogGenerator.getInstance().writeToEventLogFile(message + "\n");
   }
 
   public void commandError() {
     printError("\n\tEnter Correct Command\n");
+    LogGenerator.getInstance().writeToEventLogFile("\n\tError: Enter Correct Command\n");
   }
 
   public void createLogFiles() {

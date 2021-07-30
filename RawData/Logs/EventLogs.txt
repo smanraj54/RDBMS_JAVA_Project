@@ -1,0 +1,241 @@
+	####################################
+
+	Welcome to DVM Relational Database:
+
+	####################################
+
+
+1. User registration.
+
+2. User login.
+
+3. Exit.
+
+Select an option:
+
+show databases
+insert
+
+	Select Database First!!!
+
+exit
+
+	Exit
+	
+	####################################
+
+	Welcome to DVM Relational Database:
+
+	####################################
+
+
+1. User registration.
+
+2. User login.
+
+3. Exit.
+
+Select an option:
+
+show databases
+select 
+Error: 
+	Select Database First!!!
+
+use COUNTRYERD
+all tables 
+
+
+#----------------------------------------------#
+
+	 Database::COUNTRYERD
+
+#----------------------------------------------#
+
+
+		 Table1:: COUNTRY
+
+		 Table2:: CITY
+
+		 Table3:: STATE
+
+#----------------------------------------------#
+
+erd
+
+#----------------------------------------------#
+
+	 Database::COUNTRYERD		----->		TableName:: COUNTRY
+
+#----------------------------------------------#
+
+
+		*Primary Key:
+		COUNTRYID		----->		Integer
+
+					
+		NAME		----->		String
+
+		*Foreign Key:
+		STATEID		----->		Integer
+
+					
+		VACCINATED		----->		Boolean
+
+#----------------------------------------------#
+
+
+#----------------------------------------------#
+
+	 Database::COUNTRYERD		----->		TableName:: CITY
+
+#----------------------------------------------#
+
+
+		*Primary Key:
+		CITYID		----->		Integer
+
+					
+		STATENAME		----->		String
+
+#----------------------------------------------#
+
+
+#----------------------------------------------#
+
+	 Database::COUNTRYERD		----->		TableName:: STATE
+
+#----------------------------------------------#
+
+
+		*Primary Key:
+		STATEID		----->		Integer
+
+					
+		STATENAME		----->		String
+
+		*Foreign Key:
+		CITYID		----->		Integer
+
+#----------------------------------------------#
+
+
+
+#----------------------------------------------------------#
+
+		ER Diagram:
+
+
+#----------------------------------------------------------#
+
+
+
+			Primary Key:	------------>	Foreign Key
+
+
+			CITY	------------>	STATE
+
+			STATE	------------>	COUNTRY
+
+#----------------------------------------------------------#
+
+create table manrajSingh ( rows int, name string, age int, money double, primary rows, foreign money)
+show tables
+Error: 
+	Enter Correct Command
+
+
+	Error: Enter Correct Command
+all tables
+
+
+#----------------------------------------------#
+
+	 Database::COUNTRYERD
+
+#----------------------------------------------#
+
+
+		 Table1:: MANRAJSINGH
+
+		 Table2:: COUNTRY
+
+		 Table3:: CITY
+
+		 Table4:: STATE
+
+#----------------------------------------------#
+
+describe ManrajSingh
+
+#----------------------------------------------#
+
+	 Database::COUNTRYERD		----->		TableName:: MANRAJSINGH
+
+#----------------------------------------------#
+
+
+		*Primary Key:
+		ROWS		----->		Integer
+
+					
+		NAME		----->		String
+
+					
+		AGE		----->		Integer
+
+		*Foreign Key:
+		MONEY		----->		Double
+
+#----------------------------------------------#
+
+select * from city
+
+	#-----------------------------------------------------#
+
+
+
+
+			
+SNo.
+			
+CITYID
+			
+STATENAME
+
+
+
+			
+1
+			
+1
+			
+Ahmedabad
+
+
+			
+2
+			
+2
+			
+Halifax
+
+
+			
+3
+			
+3
+			
+Mumbai
+
+
+
+	#-----------------------------------------------------#
+
+sqldump save
+
+
+		SQL Dump Written Successfully!!!!
+
+
+show databases

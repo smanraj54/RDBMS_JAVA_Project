@@ -17,6 +17,7 @@ public class WriteObjectToFile {
 
     public void writeObject(Object object, String path)  {
         FileOutputStream fileOutputStream = null;
+        DeleteFile.deleteThisFile(path);
         try {
             fileOutputStream = new FileOutputStream(path);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);

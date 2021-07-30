@@ -4,6 +4,7 @@ import com.dal.database.DataStorage.AllDatabases;
 import com.dal.database.DataStorage.Database;
 import com.dal.database.DataStorage.Table;
 import com.dal.database.PrintInfo;
+import com.dal.database.saveData.WriteDatabaseToFile;
 import com.dal.database.utils.BasicInformation;
 import com.sun.jdi.request.DuplicateRequestException;
 
@@ -23,17 +24,28 @@ public class CreateTable {
     }
 
     public boolean addTable(String tableName, Map<String, String> columnNamesAndInputType){
+        tableName = tableName.toUpperCase();
         if(database == null){
             return false;
         }
         if(database.tables.containsKey(tableName)){
-            PrintInfo.getInstance().printMessage("\n\tTable name already present");
+            PrintInfo.getInstance().printMessage("\n\tTable name already present\n");
             return false;
         }
         Table table = new Table();
         table.tableName = tableName;
+        if(columnNamesAndInputType.containsKey("PRIMARY")){
+            table.primaryKey = columnNamesAndInputType.get("PRIMARY").toUpperCase();
+            columnNamesAndInputType.remove("PRIMARY");
+        }
+        if(columnNamesAndInputType.containsKey("FOREIGN")){
+            table.foreignKey = columnNamesAndInputType.get("FOREIGN").toUpperCase();
+            columnNamesAndInputType.remove("FOREIGN");
+        }
+
         table.columnNamesAndInputType = columnNamesAndInputType;
         database.tables.put(tableName, table);
+        WriteDatabaseToFile.getInstance().writeThisDatabasesList(AllDatabases.getInstance());
         return true;
     }
 

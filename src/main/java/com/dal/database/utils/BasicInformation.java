@@ -8,38 +8,43 @@ import java.io.Serializable;
 
 public class BasicInformation {
 
-    private String lockedDatabase = null;
-    private static BasicInformation instance = null;
+  private static BasicInformation instance = null;
+  private String lockedDatabase = null;
+  private String loginUser = null;
 
-    private BasicInformation(){
+  private BasicInformation() {
+  }
+
+  public static BasicInformation getInstance() {
+    if (instance == null) {
+      instance = new BasicInformation();
     }
+    return instance;
+  }
 
-    public static BasicInformation getInstance(){
-        if(instance == null){
-            instance = new BasicInformation();
-        }
-        return instance;
+  public String getLockedDatabase() {
+    return lockedDatabase;
+  }
+
+  public void setLockedDatabase(String lockedDatabase) {
+    this.lockedDatabase = lockedDatabase;
+  }
+
+  public Database fetchDatabase() {
+    String databaseName = BasicInformation.getInstance().getLockedDatabase();
+    if (databaseName == null || databaseName.trim().isEmpty()) {
+      return null;
     }
+    Database database = AllDatabases.getInstance().databaseMap.get(databaseName);
 
-    public String getLockedDatabase(){
-        return lockedDatabase;
-    }
+    return database;
+  }
 
-    public void setLockedDatabase(String lockedDatabase){
-        this.lockedDatabase = lockedDatabase;
-    }
+  public String getLoginUser() {
+    return loginUser;
+  }
 
-    public Database fetchDatabase(){
-
-        String databaseName = BasicInformation.getInstance().getLockedDatabase();
-        if(databaseName == null){
-            return null;
-        }
-
-        Database database = AllDatabases.getInstance().databaseMap.get(databaseName);
-
-        return database;
-    }
-
-
+  public void setLoginUser(String loginUser) {
+    this.loginUser = loginUser;
+  }
 }

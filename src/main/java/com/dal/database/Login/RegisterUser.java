@@ -7,7 +7,7 @@ public class RegisterUser {
 
     AllUsers allUsers = null;
     public RegisterUser() {
-        allUsers = new AllUsers();
+        allUsers = AllUsers.getInstance();
     }
 
     public boolean registerNewUser(String userName, String password){

@@ -19,14 +19,14 @@ public class ConditionEvaluator {
                 String rowValue = row.Inputs.get(condition.get(0)).toString();
                 String operator = (condition.get(1)).toUpperCase();
                 switch (operator){
-                    case "AND" : {
-                        if(rowValue.equals(condition.get(1))){
+                    case "=" : {
+                        if(rowValue.equals(condition.get(2))){
                             newRows.add(row);
                         }
                         break;
                     }
-                    case "OR" : {
-                        if(!rowValue.equals(condition.get(1))){
+                    case "!=" : {
+                        if(!rowValue.equals(condition.get(2))){
                             newRows.add(row);
                         }
                         break;

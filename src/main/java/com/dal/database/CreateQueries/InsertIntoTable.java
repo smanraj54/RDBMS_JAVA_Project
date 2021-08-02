@@ -23,7 +23,7 @@ public class InsertIntoTable {
                 TableRowEntryStructure rowEntry = new TableRowEntryStructure();
                 //Map<String, Object> rowEntry = new LinkedHashMap<>();
                 for(Map.Entry<String, String> columnEntry : table.columnNamesAndInputType.entrySet()){
-                    if(!Inputs.containsKey(table.primaryKey)){
+                    if(!Inputs.containsKey(table.primaryKey) && table.primaryKey != null){
                         PrintInfo.getInstance().printError("\n\tPrimary Key Cannot be NULL\n");
                         return false;
                     }

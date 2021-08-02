@@ -4,10 +4,9 @@ import com.dal.database.utils.BasicFolderStructure;
 
 import java.io.*;
 
+public class WriteStringToFile {
 
-public class WriteObjectToFile {
-
-    public WriteObjectToFile() {
+    public WriteStringToFile() {
         try {
             BasicFolderStructure basicFolderStructure = new BasicFolderStructure();
         } catch (IOException ioException) {
@@ -15,15 +14,15 @@ public class WriteObjectToFile {
         }
     }
 
-    public void writeObject(Object object, String path)  {
-        FileOutputStream fileOutputStream = null;
+    public void writeString(String value, String path)  {
+        FileWriter fileWriter = null;
         DeleteFile.deleteThisFile(path);
         try {
-            fileOutputStream = new FileOutputStream(path);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(object);
-            objectOutputStream.close();
-            //System.out.println("Object written successfully!!!!");
+            fileWriter = new FileWriter(path);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(value);
+            bufferedWriter.close();
+            System.out.println("File Written Successfully!!!!");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException ioException) {
@@ -31,7 +30,5 @@ public class WriteObjectToFile {
         }
 
     }
-
-
 
 }

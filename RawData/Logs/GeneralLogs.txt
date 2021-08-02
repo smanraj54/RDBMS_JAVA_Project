@@ -228,3 +228,382 @@ sqldump save
 
 
 show databases
+	####################################
+
+	Welcome to DVM Relational Database:
+
+	####################################
+
+
+1. User registration.
+
+2. User login.
+
+3. Exit.
+
+Select an option:
+
+commit
+
+	Commit Successful!
+	
+show databases
+exit
+
+	Exit
+	
+	####################################
+
+	Welcome to DVM Relational Database:
+
+	####################################
+
+
+1. User registration.
+
+2. User login.
+
+3. Exit.
+
+Select an option:
+
+create database first
+use database
+use first
+create table firstTable (name String, value int, type boolean);
+insert into firstTable (name, value, type) values ('
+insert into firstTable (name, value, type) values ('Manraj Singh', 25, true)
+desc firstTable
+
+#----------------------------------------------#
+
+	 Database::FIRST		----->		TableName:: FIRSTTABLE
+
+#----------------------------------------------#
+
+
+					
+		NAME		----->		String
+
+					
+		VALUE		----->		Integer
+
+					
+		TYPE		----->		Boolean
+
+#----------------------------------------------#
+
+exit
+
+	Exit
+	
+	####################################
+
+	Welcome to DVM Relational Database:
+
+	####################################
+
+
+1. User registration.
+
+2. User login.
+
+3. Exit.
+
+Select an option:
+
+use first
+insert into firstTable (name, value, type) values ('Manraj Singh', 25, true);
+desc firsttable
+
+#----------------------------------------------#
+
+	 Database::FIRST		----->		TableName:: FIRSTTABLE
+
+#----------------------------------------------#
+
+
+					
+		NAME		----->		String
+
+					
+		VALUE		----->		Integer
+
+					
+		TYPE		----->		Boolean
+
+#----------------------------------------------#
+
+select * from firstTable
+
+	#-----------------------------------------------------#
+
+
+
+
+			
+SNo.
+			
+NAME
+			
+VALUE
+			
+TYPE
+
+
+
+			
+1
+			
+Manraj Singh
+			
+25
+			
+true
+
+
+
+	#-----------------------------------------------------#
+
+commit
+
+	Commit Successful!
+	
+create table secondTable (secondTableId int, name String,type boolean)
+create table secondTable ( secondTableId int, name String, type boolean, primary secondtableid, foreign name)
+exit
+
+	Exit
+	
+	####################################
+
+	Welcome to DVM Relational Database:
+
+	####################################
+
+
+1. User registration.
+
+2. User login.
+
+3. Exit.
+
+Select an option:
+
+show databases
+use First
+sqldump get
+
+#------------------------------------------------#
+
+
+	List of Files:
+
+
+
+#------------------------------------------------#
+
+
+		1 COUNTRYERD
+
+
+		2 FIRST
+
+
+		3 NEWDB
+
+
+#------------------------------------------------#
+
+
+
+	Enter the index of file to add: 
+	####################################
+
+	Welcome to DVM Relational Database:
+
+	####################################
+
+
+1. User registration.
+
+2. User login.
+
+3. Exit.
+
+Select an option:
+
+show databases
+all tables
+use first
+all tables
+
+
+#----------------------------------------------#
+
+	 Database::FIRST
+
+#----------------------------------------------#
+
+
+		 Table1:: FIRSTTABLE
+
+		 Table2:: SECONDTABLE
+
+#----------------------------------------------#
+
+desc secondtable
+
+#----------------------------------------------#
+
+	 Database::FIRST		----->		TableName:: SECONDTABLE
+
+#----------------------------------------------#
+
+
+		*Primary Key:
+		SECONDTABLEID		----->		Integer
+
+		*Foreign Key:
+		NAME		----->		String
+
+					
+		TYPE		----->		Boolean
+
+#----------------------------------------------#
+
+commit
+
+	Commit Successful!
+	
+create database rawData
+show databases
+sqldump save
+
+
+		SQL Dump Written Successfully!!!!
+
+
+exit
+
+	Exit
+	
+	####################################
+
+	Welcome to DVM Relational Database:
+
+	####################################
+
+
+1. User registration.
+
+2. User login.
+
+3. Exit.
+
+Select an option:
+
+show databases
+use first
+commit
+
+	Commit Successful!
+	
+exit
+
+	Exit
+	
+	####################################
+
+	Welcome to DVM Relational Database:
+
+	####################################
+
+
+1. User registration.
+
+2. User login.
+
+3. Exit.
+
+Select an option:
+
+	####################################
+
+	Welcome to DVM Relational Database:
+
+	####################################
+
+
+1. User registration.
+
+2. User login.
+
+3. Exit.
+
+Select an option:
+
+
+	Set username : 
+
+	Set password (alphanumeric) : 
+
+	User registered successfully!
+
+1. User registration.
+
+2. User login.
+
+3. Exit.
+
+Select an option:
+
+
+	Set username : 
+
+	Set password (alphanumeric) : 
+
+	User registered successfully!
+
+1. User registration.
+
+2. User login.
+
+3. Exit.
+
+Select an option:
+
+
+	Set username : 
+
+	Set password (alphanumeric) : 
+
+	User registered successfully!
+
+1. User registration.
+
+2. User login.
+
+3. Exit.
+
+Select an option:
+
+	####################################
+
+	Welcome to DVM Relational Database:
+
+	####################################
+
+
+1. User registration.
+
+2. User login.
+
+3. Exit.
+
+Select an option:
+
+exit
+
+	Exit
+	

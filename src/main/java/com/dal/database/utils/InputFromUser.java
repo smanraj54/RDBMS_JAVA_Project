@@ -75,7 +75,7 @@ public class InputFromUser {
     if (Validation.userExists(userName, password)) {
       printer.printMessage("\n\tUser already exists");
     } else {
-      if (registerUser.registerNewUser(userName, hashedPassword) && registerUser.writeToObjectFile()) {
+      if (registerUser.registerNewUser(userName, hashedPassword) && registerUser.writeUsersToFile()) {
         printer.printMessage("\n\tUser registered successfully!");
       }
     }

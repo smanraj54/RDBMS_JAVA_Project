@@ -1,6 +1,7 @@
 package com.dal.database.Login;
 
 import com.dal.database.saveData.WriteObjectToFile;
+import com.dal.database.saveData.WriteStringToFile;
 import com.dal.database.utils.Application;
 
 public class RegisterUser {
@@ -16,7 +17,15 @@ public class RegisterUser {
         return true;
     }
 
-    public boolean writeToObjectFile(){
+
+    public boolean writeUsersToFile(){
+        WriteStringToFile writeStringToFile = new WriteStringToFile();
+        writeStringToFile.writeString(allUsers.getMyAllUsers(), "./FilesOfData/LoginUsersData/AllUsers");
+
+        return writeToFile();
+    }
+
+    public boolean writeToFile(){
         WriteObjectToFile writeObjectToFile = new WriteObjectToFile();
         writeObjectToFile.writeObject(allUsers,Application.pathOfUsers );
         return true;

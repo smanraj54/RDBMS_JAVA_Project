@@ -6,6 +6,7 @@ public class UserDetails implements Serializable {
 
     private String userName = "";
     private String password = "";
+    public static String space = AllUsers.space+"\t";
 
     public String getUserName() {
         return userName;
@@ -31,6 +32,18 @@ public class UserDetails implements Serializable {
     public String toString(){
         String data = "User Name = " + getUserName() + "\n" + "Password = " + getPassword() + "\n";
         return data;
+    }
+
+    public String getMyUserDetails(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("{\n");
+
+        stringBuilder.append(space+"userName : "+userName+ ",\n");
+        stringBuilder.append(space+"Password : "+password+ ",\n");
+
+        stringBuilder.append(space + "}");
+
+        return stringBuilder.toString();
     }
 
 }

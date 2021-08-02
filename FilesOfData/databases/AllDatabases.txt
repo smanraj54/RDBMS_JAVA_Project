@@ -1,0 +1,31 @@
+{
+	[
+		RAWDATA : {
+			RAWDATA : [
+
+			]
+		} , 
+		FIRST : {
+			FIRST : [
+				FIRSTTABLE : {
+					PrimaryKey : null
+					ForeignKey : null
+					FIRSTTABLE : [
+					{
+							NAME : Manraj Singh , 
+							VALUE : 25 , 
+							TYPE : true
+						}
+						]
+				} , 
+				SECONDTABLE : {
+					PrimaryKey : SECONDTABLEID
+					ForeignKey : NAME
+					SECONDTABLE : [
+
+						]
+				}
+			]
+		}
+	]
+}

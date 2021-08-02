@@ -17,6 +17,24 @@ public class SQLDump {
 
     }
 
+
+    public void writeSQLDumpData(){
+        Database database = BasicInformation.getInstance().fetchDatabase();
+
+        String path = "./FilesOfData/SQL_Dump/"+database.databaseName;
+
+        WriteStringToFile writeStringToFile = new WriteStringToFile();
+        writeStringToFile.writeString(database.getMyDatabase(), path);
+    }
+
+
+
+
+
+
+
+
+
     public boolean writeSQLDump(){
         Database database = BasicInformation.getInstance().fetchDatabase();
 
@@ -25,6 +43,7 @@ public class SQLDump {
         WriteObjectToFile writeObjectToFile = new WriteObjectToFile();
         writeObjectToFile.writeObject(database, path);
 
+        writeSQLDumpData();
         PrintInfo.getInstance().printMessage("\n\n\t\tSQL Dump Written Successfully!!!!\n\n");
 
         return true;

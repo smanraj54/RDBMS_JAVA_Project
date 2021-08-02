@@ -28,7 +28,7 @@ public class ReadObjectFromFile {
             fileInputStream = new FileInputStream(path);
             objectInputStream = new ObjectInputStream(fileInputStream);
             readObject = objectInputStream.readObject();
-            System.out.println("Reading object was successful");
+            System.out.println("Reading data was successful");
         } catch (Exception e) {
             e.printStackTrace();
             /*RegisterUser registerUser = new RegisterUser();

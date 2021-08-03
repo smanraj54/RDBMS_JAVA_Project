@@ -56,3 +56,50 @@ use first
 commit
 exit
 exit
+commit
+exit
+create database first
+create database second
+show databases
+use first
+create table firstTable (name string, age int, firstTableID int, primary firsttableid)
+all tables
+desc firsttable
+insert into firsttable (name, age, firsttableid) values ('Manraj Singh', 25, 1)
+commit;
+insert into firsttable (name, age, firsttableid) values ('Drumil Shah', 26, 2)
+insert into firsttable (name, age, firsttableid) values ('Vishvesh Bhau', 24, 3)
+commit
+exit
+show databases
+use second
+use first
+all tables
+desc firsttable
+show databases
+use first 
+all tables
+desc firsttable 
+use first
+show databases
+all tables
+desc firsttable
+exit
+show databases
+use first
+show databases
+all tables 
+desc firsttable
+desc firsttable
+use second
+show databases
+use first
+show database
+show databases
+all tables
+desc firsttable
+use first
+show databases
+all tables
+desc firsttable
+exit

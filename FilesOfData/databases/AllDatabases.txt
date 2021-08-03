@@ -1,28 +1,36 @@
 {
 	[
-		RAWDATA : {
-			RAWDATA : [
+		SECOND : {
+			SECOND : [
 
 			]
 		} , 
 		FIRST : {
 			FIRST : [
 				FIRSTTABLE : {
-					PrimaryKey : null
+					PrimaryKey : FIRSTTABLEID
 					ForeignKey : null
+					ColumnStructure : [
+						NAME : 'String' , 
+						AGE : 'Integer' , 
+						FIRSTTABLEID : 'Integer'
+						]
 					FIRSTTABLE : [
 					{
-							NAME : Manraj Singh , 
-							VALUE : 25 , 
-							TYPE : true
+							NAME : 'Manraj Singh' , 
+							AGE : '25' , 
+							FIRSTTABLEID : '1'
+						} , 
+					{
+							NAME : 'Drumil Shah' , 
+							AGE : '26' , 
+							FIRSTTABLEID : '2'
+						} , 
+					{
+							NAME : 'Vishvesh Bhau' , 
+							AGE : '24' , 
+							FIRSTTABLEID : '3'
 						}
-						]
-				} , 
-				SECONDTABLE : {
-					PrimaryKey : SECONDTABLEID
-					ForeignKey : NAME
-					SECONDTABLE : [
-
 						]
 				}
 			]

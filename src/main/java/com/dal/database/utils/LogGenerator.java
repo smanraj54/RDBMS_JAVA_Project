@@ -20,9 +20,9 @@ public class LogGenerator {
     return instance;
   }
 
-  public static String pathOfGeneralLogFiles = "./RawData/Logs/GeneralLogs.txt";
-  public static String pathOfEventLogFiles = "./RawData/Logs/EventLogs.txt";
-  public static String pathOfQueryLogFiles = "./RawData/Logs/QueryLogs.txt";
+  public static String pathOfGeneralLogFiles = "./FilesOfData/Logs/GeneralLogs.txt";
+  public static String pathOfEventLogFiles = "./FilesOfData/Logs/EventLogs.txt";
+  public static String pathOfQueryLogFiles = "./FilesOfData/Logs/QueryLogs.txt";
   final PrintInfo printer = PrintInfo.getInstance();
 
   FileWriter event;
@@ -31,9 +31,9 @@ public class LogGenerator {
 
   private void logFileGenerator() {
     try {
-      File eventFile = new File("./RawData/Logs/EventLogs.txt"); //default event log text file
-      File generalFile = new File("./RawData/Logs/GeneralLogs.txt");  //default general log text
-      File queryFile = new File("./RawData/Logs/QueryLogs.txt");  //default query log text
+      File eventFile = new File(pathOfEventLogFiles); //default event log text file
+      File generalFile = new File(pathOfGeneralLogFiles);  //default general log text
+      File queryFile = new File(pathOfQueryLogFiles);  //default query log text
       // file
       if (eventFile.createNewFile())   //if no file exists, we create one
       {

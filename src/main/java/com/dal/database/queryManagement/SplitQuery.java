@@ -38,10 +38,10 @@ public class SplitQuery {
 
     }
 
-    private void printTokens(List<String> tokens){
+    public void printTokens(List<String> tokens){
         int counter = 1;
         for(String token : tokens) {
-            System.out.println((counter++)+" \t\t" + token);
+            System.out.println((counter++)+" \t\t\"" + token+"\"");
         }
     }
 

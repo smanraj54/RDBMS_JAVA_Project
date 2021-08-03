@@ -9,7 +9,7 @@ public class BasicFolderStructure {
 
   String usersDataPath = "./RawData/LoginUsersData/";
   String databaseDataPath = "./RawData/databases/";
-  String logFilesPath = "./RawData/Logs/";
+  String logFilesPath = "./FilesOfData/Logs/";
   String sqlDump = "./RawData/SQL_Dump/";
   String stringUserData = "./FilesOfData/LoginUsersData/";
   String stringFileData = "./FilesOfData/databases/";

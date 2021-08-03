@@ -1,5 +1,7 @@
 package com.dal.database.DataStorage;
 
+import com.dal.database.fetchdatabase.FetchDataFromDataFile;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -47,5 +49,41 @@ public class AllDatabases implements Serializable {
         stringBuilder.append("}\n");
 
         return stringBuilder.toString();
+    }
+
+    public static void loadAllMydatabases(){
+        boolean keywordReceived = false;
+        String databaseName = null;
+        Database database = null;
+        String keyword = FetchDataFromDataFile.getNextKeyword();
+        for(;;) {
+            if(databaseName != null && database != null){
+                AllDatabases.getInstance().databaseMap.put(databaseName, database);
+                database = null;
+                databaseName = null;
+            }
+            if (keyword == null || FetchDataFromDataFile.tokens == null || FetchDataFromDataFile.tokens.size() <= 0) {
+                return;
+            }
+
+            if(keyword.equals("]")){
+                continue;
+            }
+            if(keyword.equals("}")){
+                keyword = FetchDataFromDataFile.getNextKeyword();
+                continue;
+            }
+
+
+            if(!keywordReceived){
+                keywordReceived = true;
+                databaseName = keyword;
+            }
+            else{
+                keywordReceived = false;
+                database = Database.fetchMyDatabase(keyword);
+            }
+            keyword = FetchDataFromDataFile.getNextKeyword();
+        }
     }
 }

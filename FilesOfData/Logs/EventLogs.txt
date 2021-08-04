@@ -64,3 +64,1247 @@ exit
 
 	Exit
 	
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+	####################################
+	Welcome to DVM Relational Database:
+	####################################
+
+1. User registration.
+2. User login.
+3. Exit.
+Select an option:
+create database AllCountries
+use allcountries
+create table city (cityId integer, stateName string, PRIMARY cityId);
+insert into city (cityId, stateName) values (1, 'Ahmedabad');
+insert into city (cityId, stateName) values (2, 'Halifax');
+insert into city (cityId, stateName) values (3, 'Mumbai');
+
+
+create table state (stateId integer, stateName string, cityId int, PRIMARY stateId, FOREIGN cityId);
+insert into state (stateId, stateName, cityId) values (1, 'Gujarat', 1);
+insert into state (stateId, stateName, cityId) values (2, 'Nova Scotia', 2);
+insert into state (stateId, stateName) values (3, 'Maharastra', 3);
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: 
+	Enter Correct Command
+
+	Error: Enter Correct Command
+
+
+
+create table country (countryId integer, name string, stateId int, vaccinated boolean, PRIMARY countryId, FOREIGN stateId);
+insert into country (countryId, name, stateId, vaccinated) values (1, 'Dhrumil', 3, true);
+insert into country (countryId, name, stateId, vaccinated) values (2, 'Manraj', 2, true);
+insert into country (countryId, name, stateId, vaccinated) values (3, 'Vishvesh', 1, true);
+insert into country (countryId, name, stateId, vaccinated) values (4, 'Dhruv', 2, true);
+
+
+
+
+all tables
+
+
+#----------------------------------------------#
+	 Database::ALLCOUNTRIES
+#----------------------------------------------#
+
+		 Table1:: CITY
+		 Table2:: COUNTRY
+		 Table3:: STATE
+#----------------------------------------------#
+erd
+
+#----------------------------------------------#
+	 Database::ALLCOUNTRIES		----->		TableName:: CITY
+#----------------------------------------------#
+
+		*Primary Key:		CITYID		----->		Integer
+							STATENAME		----->		String
+#----------------------------------------------#
+
+#----------------------------------------------#
+	 Database::ALLCOUNTRIES		----->		TableName:: COUNTRY
+#----------------------------------------------#
+
+		*Primary Key:		COUNTRYID		----->		Integer
+							NAME		----->		String
+		*Foreign Key:		STATEID		----->		Integer
+							VACCINATED		----->		Boolean
+#----------------------------------------------#
+
+#----------------------------------------------#
+	 Database::ALLCOUNTRIES		----->		TableName:: STATE
+#----------------------------------------------#
+
+		*Primary Key:		STATEID		----->		Integer
+							STATENAME		----->		String
+		*Foreign Key:		CITYID		----->		Integer
+#----------------------------------------------#
+
+
+#----------------------------------------------------------#
+		ER Diagram:
+
+#----------------------------------------------------------#
+
+
+			Primary Key:	------------>	Foreign Key
+
+			CITY	------------>	STATE
+			STATE	------------>	COUNTRY
+#----------------------------------------------------------#
+exit
+
+	Exit
+	
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+	####################################
+	Welcome to DVM Relational Database:
+	####################################
+
+1. User registration.
+2. User login.
+3. Exit.
+Select an option:
+show databses
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: 
+	Enter Correct Command
+
+	Error: Enter Correct Command
+use allcountries
+all tables
+
+
+#----------------------------------------------#
+	 Database::ALLCOUNTRIES
+#----------------------------------------------#
+
+		 Table1:: CITY
+		 Table2:: COUNTRY
+		 Table3:: STATE
+#----------------------------------------------#
+erd
+
+#----------------------------------------------#
+	 Database::ALLCOUNTRIES		----->		TableName:: CITY
+#----------------------------------------------#
+
+		*Primary Key:		CITYID		----->		Integer
+							STATENAME		----->		String
+#----------------------------------------------#
+
+#----------------------------------------------#
+	 Database::ALLCOUNTRIES		----->		TableName:: COUNTRY
+#----------------------------------------------#
+
+		*Primary Key:		COUNTRYID		----->		Integer
+							NAME		----->		String
+		*Foreign Key:		STATEID		----->		Integer
+							VACCINATED		----->		Boolean
+#----------------------------------------------#
+
+#----------------------------------------------#
+	 Database::ALLCOUNTRIES		----->		TableName:: STATE
+#----------------------------------------------#
+
+		*Primary Key:		STATEID		----->		Integer
+							STATENAME		----->		String
+		*Foreign Key:		CITYID		----->		Integer
+#----------------------------------------------#
+
+
+#----------------------------------------------------------#
+		ER Diagram:
+
+#----------------------------------------------------------#
+
+
+			Primary Key:	------------>	Foreign Key
+
+			CITY	------------>	STATE
+			STATE	------------>	COUNTRY
+#----------------------------------------------------------#
+exit
+
+	Exit
+	
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+	####################################
+	Welcome to DVM Relational Database:
+	####################################
+
+1. User registration.
+2. User login.
+3. Exit.
+Select an option:
+exit 
+
+	Exit
+	
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+	####################################
+	Welcome to DVM Relational Database:
+	####################################
+
+1. User registration.
+2. User login.
+3. Exit.
+Select an option:
+
+	Set username : 
+	Set password (alphanumeric) : 
+	User registered successfully!
+1. User registration.
+2. User login.
+3. Exit.
+Select an option:
+show databases
+show data
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: 
+	Enter Correct Command
+
+	Error: Enter Correct Command
+use first
+show databases
+create database dummy
+show databases
+use dummy
+show databases
+create table tablename*123
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: 
+	Table Name should only contain characters
+create table demovideo
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: 
+	Enter input columns for the tables
+create table demovideo (demoid fdsf)
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: 
+	Enter Correct Command
+
+	Error: Enter Correct Command
+create table demovideo (demoid int, name string, price boolean , working boolean, primary dcfvr)
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: 
+	Enter Correct Command
+
+	Error: Enter Correct Command
+create table demovideo (demoid int, name string, price boolean , working boolean, primary DEMOID)
+all tables 
+
+
+#----------------------------------------------#
+	 Database::DUMMY
+#----------------------------------------------#
+
+		 Table1:: DEMOVIDEO
+#----------------------------------------------#
+desc table 
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: 
+	Table does not exist!!!!
+desc demovideo
+
+#----------------------------------------------#
+	 Database::DUMMY		----->		TableName:: DEMOVIDEO
+#----------------------------------------------#
+
+		*Primary Key:		DEMOID		----->		Integer
+							NAME		----->		String
+							PRICE		----->		Boolean
+							WORKING		----->		Boolean
+#----------------------------------------------#
+create table demovideo
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: 
+	Enter input columns for the tables
+create table demovideo (demoid int, name string, price boolean , working boolean, primary DEMOID)
+
+	Table name already present
+all tables
+
+
+#----------------------------------------------#
+	 Database::DUMMY
+#----------------------------------------------#
+
+		 Table1:: DEMOVIDEO
+#----------------------------------------------#
+insert into dummyvideo (name, price) values ('Manraj Singh', 100.50)
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: 
+	Table does not exist!!!
+insert into demovideo (name, price) values ('Manraj Singh', 100.50)
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: 
+	Primary Key Cannot be NULL
+insert into demovideo (name, price, demoid) values ('manraj Singh', 100.79, 1)
+select * from demovideo
+
+	#-----------------------------------------------------#
+
+
+			SNo.			DEMOID			NAME			PRICE			WORKING
+
+			1			1			manraj Singh			100.79			NULL
+
+	#-----------------------------------------------------#
+rollback
+
+	Rollback Successful!
+	select * from demovideo
+
+	#-----------------------------------------------------#
+
+
+			SNo.			DEMOID			NAME			PRICE			WORKING
+
+
+	#-----------------------------------------------------#
+insert into demovideo (name, price, demoid) values ('manraj Singh', 100.79, 1)
+commit
+
+	Commit Successful!
+	rollback
+
+	Rollback Successful!
+	select * from demovideo
+
+	#-----------------------------------------------------#
+
+
+			SNo.			DEMOID			NAME			PRICE			WORKING
+
+			1			1			manraj Singh			100.79			NULL
+
+	#-----------------------------------------------------#
+insert into demovideo (name, price, demoid) values ('manraj Singh', 100.79, 1)
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: Primary Key Cannot be duplicate
+insert into demovideo (name, price, demoid) values ('Vishvesh Naik', 200.24, 2)
+select * from demovideo
+
+	#-----------------------------------------------------#
+
+
+			SNo.			DEMOID			NAME			PRICE			WORKING
+
+			1			1			manraj Singh			100.79			NULL
+			2			2			Vishvesh Naik			200.24			NULL
+
+	#-----------------------------------------------------#
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+	####################################
+	Welcome to DVM Relational Database:
+	####################################
+
+1. User registration.
+2. User login.
+3. Exit.
+Select an option:
+show databases
+use dummy
+insert into demovideo (name, price, demoid, working) values ('Dhrumil Shah', 20.24, 3, true) 
+insert into demovideo (name, price, demoid, working) values ('Vishvesh Naik, 222, 3, true)
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: 
+	Enter Correct Command
+
+	Error: Enter Correct Command
+insert into demovideo (name, price, demoid, working) values ('Vishvesh Naik', 222, 3, true)
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: Primary Key Cannot be duplicate
+insert into demovideo (name, price, demoid, working) values ('Vishvesh Naik', 222, 2, true)
+select * from demovideo
+
+	#-----------------------------------------------------#
+
+
+			SNo.			DEMOID			NAME			PRICE			WORKING
+
+			1			1			manraj Singh			100.79			NULL
+			2			3			Dhrumil Shah			20.24			true
+			3			2			Vishvesh Naik			222			true
+
+	#-----------------------------------------------------#
+commit
+
+	Commit Successful!
+	create database datatest
+use datatest
+create table projecttest (rows int, assigned int, name string, vaccinated boolean, price double, primary rows);
+insert into projecttest (rows, assigned, name, vaccinated, price) values (1, 1, 'Manraj Singh', true, 10.12);
+insert into projecttest (rows, assigned, name, vaccinated, price) values (2, 2, 'Manraj Singh', false, 20.2);
+insert into projecttest (rows, assigned, name, vaccinated, price) values (3, 2, 'Manraj Singh', true, 100.14);
+insert into projecttest (rows, assigned, name, vaccinated, price) values (4, 2, 'Manraj Singh', false, 200.12);
+insert into projecttest (rows, assigned, name, vaccinated, price) values (5, 1, 'Dhrumil Shah', true, 150.15);
+insert into projecttest (rows, assigned, name, vaccinated, price) values (6, 1, 'Dhrumil Shah', false, 20,25);
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: 
+	Data type of input parameter: " price " is wrong
+insert into projecttest (rows, assigned, name, vaccinated, price) values (7, 1, 'Dhrumil Shah', false, 17);
+insert into projecttest (rows, assigned, name, vaccinated, price) values (8, 2, 'Dhrumil Shah', false, 21);
+insert into projecttest (rows, assigned, name, vaccinated, price) values (9, 2, 'Vishvesh Naik', true, 22);
+insert into projecttest (rows, assigned, name, vaccinated, price) values (11, 1, 'Vishvesh Naik', true, 300.31);
+insert into projecttest (rows, assigned, name, vaccinated, price) values (12, 2, 'Vishvesh Naik', false, 250.61);
+insert into projecttest (rows, assigned, name, vaccinated, price) values (13, 1, 'Vishvesh Naik', true, 75.25);
+insert into projecttest (rows, assigned, name, vaccinated, price) values (14, 2, 'Manraj_Singh', false, 21);
+insert into projecttest (rows, assigned, name, vaccinated, price) values (15, 1, 'Manraj_Singh', false, 5);
+insert into projecttest (rows, assigned, name, vaccinated, price) values (16, 2, 'Dhrumil_Shah', true, 200.25);
+insert into projecttest (rows, assigned, name, vaccinated, price) values (17, 1, 'Dhrumil_Shah', false, 100);
+insert into projecttest (rows, assigned, name, vaccinated, price) values (18, 2, 'Vishvesh_Naik', false, 45);
+insert into projecttest (rows, assigned, name, vaccinated, price) values (19, 2, 'Vishvesh_Naik', true, 54);
+insert into projecttest (rows, assigned, name, vaccinated, price) values (20, 1, 'dataproject', true, 79.44);
+
+
+
+
+
+
+all databases
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: 
+	Enter Correct Command
+
+	Error: Enter Correct Command
+all tables 
+
+
+#----------------------------------------------#
+	 Database::DATATEST
+#----------------------------------------------#
+
+		 Table1:: PROJECTTEST
+#----------------------------------------------#
+desc projecttes
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: 
+	Table does not exist!!!!
+desc projecttest
+
+#----------------------------------------------#
+	 Database::DATATEST		----->		TableName:: PROJECTTEST
+#----------------------------------------------#
+
+		*Primary Key:		ROWS		----->		Integer
+							ASSIGNED		----->		Integer
+							NAME		----->		String
+							VACCINATED		----->		Boolean
+							PRICE		----->		Double
+#----------------------------------------------#
+select * from projecttest
+
+	#-----------------------------------------------------#
+
+
+			SNo.			ROWS			ASSIGNED			NAME			VACCINATED			PRICE
+
+			1			1			1			Manraj Singh			true			10.12
+			2			2			2			Manraj Singh			false			20.2
+			3			3			2			Manraj Singh			true			100.14
+			4			4			2			Manraj Singh			false			200.12
+			5			5			1			Dhrumil Shah			true			150.15
+			6			7			1			Dhrumil Shah			false			17
+			7			8			2			Dhrumil Shah			false			21
+			8			9			2			Vishvesh Naik			true			22
+			9			11			1			Vishvesh Naik			true			300.31
+			10			12			2			Vishvesh Naik			false			250.61
+			11			13			1			Vishvesh Naik			true			75.25
+			12			14			2			Manraj_Singh			false			21
+			13			15			1			Manraj_Singh			false			5
+			14			16			2			Dhrumil_Shah			true			200.25
+			15			17			1			Dhrumil_Shah			false			100
+			16			18			2			Vishvesh_Naik			false			45
+			17			19			2			Vishvesh_Naik			true			54
+			18			20			1			dataproject			true			79.44
+
+	#-----------------------------------------------------#
+commit
+
+	Commit Successful!
+	select * from projecttest where vaccinated = true
+
+	#-----------------------------------------------------#
+
+
+			SNo.			ROWS			ASSIGNED			NAME			VACCINATED			PRICE
+
+			1			1			1			Manraj Singh			true			10.12
+			2			3			2			Manraj Singh			true			100.14
+			3			5			1			Dhrumil Shah			true			150.15
+			4			9			2			Vishvesh Naik			true			22
+			5			11			1			Vishvesh Naik			true			300.31
+			6			13			1			Vishvesh Naik			true			75.25
+			7			16			2			Dhrumil_Shah			true			200.25
+			8			19			2			Vishvesh_Naik			true			54
+			9			20			1			dataproject			true			79.44
+
+	#-----------------------------------------------------#
+select * from projecttest where vaccinated = true and name = 'Vishvesh Naik'
+
+	#-----------------------------------------------------#
+
+
+			SNo.			ROWS			ASSIGNED			NAME			VACCINATED			PRICE
+
+			1			9			2			Vishvesh Naik			true			22
+			2			11			1			Vishvesh Naik			true			300.31
+			3			13			1			Vishvesh Naik			true			75.25
+
+	#-----------------------------------------------------#
+select * from projecttest where vaccinated = true or name = 'Vishvesh Naik'
+
+	#-----------------------------------------------------#
+
+
+			SNo.			ROWS			ASSIGNED			NAME			VACCINATED			PRICE
+
+			1			16			2			Dhrumil_Shah			true			200.25
+			2			20			1			dataproject			true			79.44
+			3			1			1			Manraj Singh			true			10.12
+			4			11			1			Vishvesh Naik			true			300.31
+			5			12			2			Vishvesh Naik			false			250.61
+			6			13			1			Vishvesh Naik			true			75.25
+			7			5			1			Dhrumil Shah			true			150.15
+			8			9			2			Vishvesh Naik			true			22
+			9			19			2			Vishvesh_Naik			true			54
+			10			3			2			Manraj Singh			true			100.14
+
+	#-----------------------------------------------------#
+select * from projecttest where vaccinated = true and name = 'Vishvesh Naik' 
+
+	#-----------------------------------------------------#
+
+
+			SNo.			ROWS			ASSIGNED			NAME			VACCINATED			PRICE
+
+			1			9			2			Vishvesh Naik			true			22
+			2			11			1			Vishvesh Naik			true			300.31
+			3			13			1			Vishvesh Naik			true			75.25
+
+	#-----------------------------------------------------#
+select * from projecttest where vaccinated = true and name = 'Vishvesh Naik' and row = 11
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: 
+	The column name: ROW Does not exit in table!!!
+Error: 
+	Enter Correct Command
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+
+	Error: Enter Correct Command
+select * from projecttest where vaccinated = true and name = 'Vishvesh Naik' and rows = 11
+
+	#-----------------------------------------------------#
+
+
+			SNo.			ROWS			ASSIGNED			NAME			VACCINATED			PRICE
+
+			1			11			1			Vishvesh Naik			true			300.31
+
+	#-----------------------------------------------------#
+select * from projecttest where vaccinated = true and name = 'Vishvesh Naik' and assigned = 1
+
+	#-----------------------------------------------------#
+
+
+			SNo.			ROWS			ASSIGNED			NAME			VACCINATED			PRICE
+
+			1			11			1			Vishvesh Naik			true			300.31
+			2			13			1			Vishvesh Naik			true			75.25
+
+	#-----------------------------------------------------#
+select * from projecttest where vaccinated = true and name = 'Vishvesh Naik' and assigned = 1 and price = 75.25
+
+	#-----------------------------------------------------#
+
+
+			SNo.			ROWS			ASSIGNED			NAME			VACCINATED			PRICE
+
+			1			13			1			Vishvesh Naik			true			75.25
+
+	#-----------------------------------------------------#
+select (name, vaccinated) from projecttest where vaccinated = true and name = 'Vishvesh Naik' and assigned = 1 and price = 75.25
+
+	#-----------------------------------------------------#
+
+
+			SNo.			NAME			VACCINATED
+
+			1			Vishvesh Naik			true
+
+	#-----------------------------------------------------#
+delete from projecttest where vaccinated = true and name = 'Vishvesh Naik' and assigned = 1 and price = 75.25
+
+	Deleted 1 rows successfully
+select * from projecttest
+
+	#-----------------------------------------------------#
+
+
+			SNo.			ROWS			ASSIGNED			NAME			VACCINATED			PRICE
+
+			1			1			1			Manraj Singh			true			10.12
+			2			2			2			Manraj Singh			false			20.2
+			3			3			2			Manraj Singh			true			100.14
+			4			4			2			Manraj Singh			false			200.12
+			5			5			1			Dhrumil Shah			true			150.15
+			6			7			1			Dhrumil Shah			false			17
+			7			8			2			Dhrumil Shah			false			21
+			8			9			2			Vishvesh Naik			true			22
+			9			11			1			Vishvesh Naik			true			300.31
+			10			12			2			Vishvesh Naik			false			250.61
+			11			14			2			Manraj_Singh			false			21
+			12			15			1			Manraj_Singh			false			5
+			13			16			2			Dhrumil_Shah			true			200.25
+			14			17			1			Dhrumil_Shah			false			100
+			15			18			2			Vishvesh_Naik			false			45
+			16			19			2			Vishvesh_Naik			true			54
+			17			20			1			dataproject			true			79.44
+
+	#-----------------------------------------------------#
+rollback
+
+	Rollback Successful!
+	select * from projecttest
+
+	#-----------------------------------------------------#
+
+
+			SNo.			ROWS			ASSIGNED			NAME			VACCINATED			PRICE
+
+			1			1			1			Manraj Singh			true			10.12
+			2			2			2			Manraj Singh			false			20.2
+			3			3			2			Manraj Singh			true			100.14
+			4			4			2			Manraj Singh			false			200.12
+			5			5			1			Dhrumil Shah			true			150.15
+			6			7			1			Dhrumil Shah			false			17
+			7			8			2			Dhrumil Shah			false			21
+			8			9			2			Vishvesh Naik			true			22
+			9			11			1			Vishvesh Naik			true			300.31
+			10			12			2			Vishvesh Naik			false			250.61
+			11			13			1			Vishvesh Naik			true			75.25
+			12			14			2			Manraj_Singh			false			21
+			13			15			1			Manraj_Singh			false			5
+			14			16			2			Dhrumil_Shah			true			200.25
+			15			17			1			Dhrumil_Shah			false			100
+			16			18			2			Vishvesh_Naik			false			45
+			17			19			2			Vishvesh_Naik			true			54
+			18			20			1			dataproject			true			79.44
+
+	#-----------------------------------------------------#
+update projecttest set name = 'Manraj Singh'
+
+	Updated 18 rows successfully
+select * from projecttest
+
+	#-----------------------------------------------------#
+
+
+			SNo.			ROWS			ASSIGNED			NAME			VACCINATED			PRICE
+
+			1			1			1			Manraj Singh			true			10.12
+			2			2			2			Manraj Singh			false			20.2
+			3			3			2			Manraj Singh			true			100.14
+			4			4			2			Manraj Singh			false			200.12
+			5			5			1			Manraj Singh			true			150.15
+			6			7			1			Manraj Singh			false			17
+			7			8			2			Manraj Singh			false			21
+			8			9			2			Manraj Singh			true			22
+			9			11			1			Manraj Singh			true			300.31
+			10			12			2			Manraj Singh			false			250.61
+			11			13			1			Manraj Singh			true			75.25
+			12			14			2			Manraj Singh			false			21
+			13			15			1			Manraj Singh			false			5
+			14			16			2			Manraj Singh			true			200.25
+			15			17			1			Manraj Singh			false			100
+			16			18			2			Manraj Singh			false			45
+			17			19			2			Manraj Singh			true			54
+			18			20			1			Manraj Singh			true			79.44
+
+	#-----------------------------------------------------#
+rollback 
+
+	Rollback Successful!
+	select * from projecttest
+
+	#-----------------------------------------------------#
+
+
+			SNo.			ROWS			ASSIGNED			NAME			VACCINATED			PRICE
+
+			1			1			1			Manraj Singh			true			10.12
+			2			2			2			Manraj Singh			false			20.2
+			3			3			2			Manraj Singh			true			100.14
+			4			4			2			Manraj Singh			false			200.12
+			5			5			1			Dhrumil Shah			true			150.15
+			6			7			1			Dhrumil Shah			false			17
+			7			8			2			Dhrumil Shah			false			21
+			8			9			2			Vishvesh Naik			true			22
+			9			11			1			Vishvesh Naik			true			300.31
+			10			12			2			Vishvesh Naik			false			250.61
+			11			13			1			Vishvesh Naik			true			75.25
+			12			14			2			Manraj_Singh			false			21
+			13			15			1			Manraj_Singh			false			5
+			14			16			2			Dhrumil_Shah			true			200.25
+			15			17			1			Dhrumil_Shah			false			100
+			16			18			2			Vishvesh_Naik			false			45
+			17			19			2			Vishvesh_Naik			true			54
+			18			20			1			dataproject			true			79.44
+
+	#-----------------------------------------------------#
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+	####################################
+	Welcome to DVM Relational Database:
+	####################################
+
+1. User registration.
+2. User login.
+3. Exit.
+Select an option:
+show databases
+use dummy
+all tables 
+
+
+#----------------------------------------------#
+	 Database::DUMMY
+#----------------------------------------------#
+
+		 Table1:: DEMOVIDEO
+#----------------------------------------------#
+use demovideo
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: 
+	Database does not exist!!
+select * from demovideo
+
+	#-----------------------------------------------------#
+
+
+			SNo.			DEMOID			NAME			PRICE			WORKING
+
+			1			1			manraj Singh			100.79			NULL
+			2			3			Dhrumil Shah			20.24			true
+			3			2			Vishvesh Naik			222			true
+
+	#-----------------------------------------------------#
+use datatest
+all tables
+
+
+#----------------------------------------------#
+	 Database::DATATEST
+#----------------------------------------------#
+
+		 Table1:: PROJECTTEST
+#----------------------------------------------#
+use projecttest
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: 
+	Database does not exist!!
+select * from projecttest
+
+	#-----------------------------------------------------#
+
+
+			SNo.			ROWS			ASSIGNED			NAME			VACCINATED			PRICE
+
+			1			1			1			Manraj Singh			true			10.12
+			2			2			2			Manraj Singh			false			20.2
+			3			3			2			Manraj Singh			true			100.14
+			4			4			2			Manraj Singh			false			200.12
+			5			5			1			Dhrumil Shah			true			150.15
+			6			7			1			Dhrumil Shah			false			17
+			7			8			2			Dhrumil Shah			false			21
+			8			9			2			Vishvesh Naik			true			22
+			9			11			1			Vishvesh Naik			true			300.31
+			10			12			2			Vishvesh Naik			false			250.61
+			11			13			1			Vishvesh Naik			true			75.25
+			12			14			2			Manraj_Singh			false			21
+			13			15			1			Manraj_Singh			false			5
+			14			16			2			Dhrumil_Shah			true			200.25
+			15			17			1			Dhrumil_Shah			false			100
+			16			18			2			Vishvesh_Naik			false			45
+			17			19			2			Vishvesh_Naik			true			54
+			18			20			1			dataproject			true			79.44
+
+	#-----------------------------------------------------#
+select * from projecttest where vaccinated = true and name = 'Vishvesh Naik' and assigned = 1 and price = 75.25
+
+	#-----------------------------------------------------#
+
+
+			SNo.			ROWS			ASSIGNED			NAME			VACCINATED			PRICE
+
+			1			13			1			Vishvesh Naik			true			75.25
+
+	#-----------------------------------------------------#
+update projecttest set name = 'Manraj Singh' where vaccinated = true and name = 'Vishvesh Naik' and assigned = 1 and price = 75.25
+
+	Updated 1 rows successfully
+rollback 
+
+	Rollback Successful!
+	select * from projecttest
+
+	#-----------------------------------------------------#
+
+
+			SNo.			ROWS			ASSIGNED			NAME			VACCINATED			PRICE
+
+			1			1			1			Manraj Singh			true			10.12
+			2			2			2			Manraj Singh			false			20.2
+			3			3			2			Manraj Singh			true			100.14
+			4			4			2			Manraj Singh			false			200.12
+			5			5			1			Dhrumil Shah			true			150.15
+			6			7			1			Dhrumil Shah			false			17
+			7			8			2			Dhrumil Shah			false			21
+			8			9			2			Vishvesh Naik			true			22
+			9			11			1			Vishvesh Naik			true			300.31
+			10			12			2			Vishvesh Naik			false			250.61
+			11			13			1			Vishvesh Naik			true			75.25
+			12			14			2			Manraj_Singh			false			21
+			13			15			1			Manraj_Singh			false			5
+			14			16			2			Dhrumil_Shah			true			200.25
+			15			17			1			Dhrumil_Shah			false			100
+			16			18			2			Vishvesh_Naik			false			45
+			17			19			2			Vishvesh_Naik			true			54
+			18			20			1			dataproject			true			79.44
+
+	#-----------------------------------------------------#
+select * from projecttest where vaccinated = true and name = 'Vishvesh Naik' and assigned = 1 and price = 75.25
+
+	#-----------------------------------------------------#
+
+
+			SNo.			ROWS			ASSIGNED			NAME			VACCINATED			PRICE
+
+			1			13			1			Vishvesh Naik			true			75.25
+
+	#-----------------------------------------------------#
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+	####################################
+	Welcome to DVM Relational Database:
+	####################################
+
+1. User registration.
+2. User login.
+3. Exit.
+Select an option:
+exit
+
+	Exit
+	
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+	####################################
+	Welcome to DVM Relational Database:
+	####################################
+
+1. User registration.
+2. User login.
+3. Exit.
+Select an option:
+use dummy
+all tables 
+
+
+#----------------------------------------------#
+	 Database::DUMMY
+#----------------------------------------------#
+
+		 Table1:: DEMOVIDEO
+#----------------------------------------------#
+select * from demovideo
+
+	#-----------------------------------------------------#
+
+
+			SNo.			DEMOID			NAME			PRICE			WORKING
+
+			1			1			manraj Singh			100.79			NULL
+			2			3			Dhrumil Shah			20.24			true
+			3			2			Vishvesh Naik			222			true
+
+	#-----------------------------------------------------#
+use datatest
+select * from projecttest
+
+	#-----------------------------------------------------#
+
+
+			SNo.			ROWS			ASSIGNED			NAME			VACCINATED			PRICE
+
+			1			1			1			Manraj Singh			true			10.12
+			2			2			2			Manraj Singh			false			20.2
+			3			3			2			Manraj Singh			true			100.14
+			4			4			2			Manraj Singh			false			200.12
+			5			5			1			Dhrumil Shah			true			150.15
+			6			7			1			Dhrumil Shah			false			17
+			7			8			2			Dhrumil Shah			false			21
+			8			9			2			Vishvesh Naik			true			22
+			9			11			1			Vishvesh Naik			true			300.31
+			10			12			2			Vishvesh Naik			false			250.61
+			11			13			1			Vishvesh Naik			true			75.25
+			12			14			2			Manraj_Singh			false			21
+			13			15			1			Manraj_Singh			false			5
+			14			16			2			Dhrumil_Shah			true			200.25
+			15			17			1			Dhrumil_Shah			false			100
+			16			18			2			Vishvesh_Naik			false			45
+			17			19			2			Vishvesh_Naik			true			54
+			18			20			1			dataproject			true			79.44
+
+	#-----------------------------------------------------#
+select * from project test where vaccinated = true and name = 'Vishvesh Naik'
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: 
+	Enter Correct Command
+
+	Error: Enter Correct Command
+select * from projecttest where vaccinated = true and name = 'Vishvesh Naik'
+
+	#-----------------------------------------------------#
+
+
+			SNo.			ROWS			ASSIGNED			NAME			VACCINATED			PRICE
+
+			1			9			2			Vishvesh Naik			true			22
+			2			11			1			Vishvesh Naik			true			300.31
+			3			13			1			Vishvesh Naik			true			75.25
+
+	#-----------------------------------------------------#
+select * from projecttest where vaccinated = true and name = 'Vishvesh Naik' and assigned = 1
+
+	#-----------------------------------------------------#
+
+
+			SNo.			ROWS			ASSIGNED			NAME			VACCINATED			PRICE
+
+			1			11			1			Vishvesh Naik			true			300.31
+			2			13			1			Vishvesh Naik			true			75.25
+
+	#-----------------------------------------------------#
+select * from projecttest where vaccinated = true and name = 'Vishvesh Naik' and assigned = 1 and price = 75.25
+
+	#-----------------------------------------------------#
+
+
+			SNo.			ROWS			ASSIGNED			NAME			VACCINATED			PRICE
+
+			1			13			1			Vishvesh Naik			true			75.25
+
+	#-----------------------------------------------------#
+update project test set name = 'Vishnu Singh' where vaccinated = true and name = 'Vishvesh Naik' and assigned = 1 and price = 75.25
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: 
+	Table does not exist!!!!
+update projecttest set name = 'Vishnu Singh' where vaccinated = true and name = 'Vishvesh Naik' and assigned = 1 and price = 75.25
+
+	Updated 1 rows successfully
+select * from projecttest
+
+	#-----------------------------------------------------#
+
+
+			SNo.			ROWS			ASSIGNED			NAME			VACCINATED			PRICE
+
+			1			1			1			Manraj Singh			true			10.12
+			2			2			2			Manraj Singh			false			20.2
+			3			3			2			Manraj Singh			true			100.14
+			4			4			2			Manraj Singh			false			200.12
+			5			5			1			Dhrumil Shah			true			150.15
+			6			7			1			Dhrumil Shah			false			17
+			7			8			2			Dhrumil Shah			false			21
+			8			9			2			Vishvesh Naik			true			22
+			9			11			1			Vishvesh Naik			true			300.31
+			10			12			2			Vishvesh Naik			false			250.61
+			11			13			1			Vishnu Singh			true			75.25
+			12			14			2			Manraj_Singh			false			21
+			13			15			1			Manraj_Singh			false			5
+			14			16			2			Dhrumil_Shah			true			200.25
+			15			17			1			Dhrumil_Shah			false			100
+			16			18			2			Vishvesh_Naik			false			45
+			17			19			2			Vishvesh_Naik			true			54
+			18			20			1			dataproject			true			79.44
+
+	#-----------------------------------------------------#
+commit
+
+	Commit Successful!
+	sqldump save
+
+
+		SQL Dump Written Successfully!!!!
+
+show databases
+drop datatest
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: 
+	Enter Correct Command
+
+	Error: Enter Correct Command
+drop database datatest
+show databases
+sqldump save
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: 
+	Select Database First!!!
+Error: 
+	Enter Correct Command
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+
+	Error: Enter Correct Command
+use first
+sqldump save
+
+
+		SQL Dump Written Successfully!!!!
+
+sqldump get
+
+#------------------------------------------------#
+
+	List of Files:
+
+
+#------------------------------------------------#
+
+		1 FIRST
+
+		2 DATATEST
+
+#------------------------------------------------#
+
+
+	Enter the index of file to add: 
+
+		SQL Dump Read Successfully!!!!
+
+show databases
+use datatest
+all tables
+
+
+#----------------------------------------------#
+	 Database::DATATEST
+#----------------------------------------------#
+
+		 Table1:: PROJECTTEST
+#----------------------------------------------#
+select * from projecttest
+
+	#-----------------------------------------------------#
+
+
+			SNo.			ROWS			ASSIGNED			NAME			VACCINATED			PRICE
+
+			1			1			1			Manraj Singh			true			10.12
+			2			2			2			Manraj Singh			false			20.2
+			3			3			2			Manraj Singh			true			100.14
+			4			4			2			Manraj Singh			false			200.12
+			5			5			1			Dhrumil Shah			true			150.15
+			6			7			1			Dhrumil Shah			false			17
+			7			8			2			Dhrumil Shah			false			21
+			8			9			2			Vishvesh Naik			true			22
+			9			11			1			Vishvesh Naik			true			300.31
+			10			12			2			Vishvesh Naik			false			250.61
+			11			13			1			Vishnu Singh			true			75.25
+			12			14			2			Manraj_Singh			false			21
+			13			15			1			Manraj_Singh			false			5
+			14			16			2			Dhrumil_Shah			true			200.25
+			15			17			1			Dhrumil_Shah			false			100
+			16			18			2			Vishvesh_Naik			false			45
+			17			19			2			Vishvesh_Naik			true			54
+			18			20			1			dataproject			true			79.44
+
+	#-----------------------------------------------------#
+erd
+
+#----------------------------------------------#
+	 Database::DATATEST		----->		TableName:: PROJECTTEST
+#----------------------------------------------#
+
+		*Primary Key:		ROWS		----->		Integer
+							ASSIGNED		----->		Integer
+							NAME		----->		String
+							VACCINATED		----->		Boolean
+							PRICE		----->		Double
+#----------------------------------------------#
+
+
+#----------------------------------------------------------#
+		ER Diagram:
+
+#----------------------------------------------------------#
+
+
+			Primary Key:	------------>	Foreign Key
+
+#----------------------------------------------------------#
+showdatabases
+
+
+	[ 04/Aug./2021 - Wed. ] #-----------------------------------------------------------------------# 
+
+Error: 
+	Enter Correct Command
+
+	Error: Enter Correct Command
+show databases
+use allcountries
+all tables
+
+
+#----------------------------------------------#
+	 Database::ALLCOUNTRIES
+#----------------------------------------------#
+
+		 Table1:: CITY
+		 Table2:: COUNTRY
+		 Table3:: STATE
+#----------------------------------------------#
+erd
+
+#----------------------------------------------#
+	 Database::ALLCOUNTRIES		----->		TableName:: CITY
+#----------------------------------------------#
+
+		*Primary Key:		CITYID		----->		Integer
+							STATENAME		----->		String
+#----------------------------------------------#
+
+#----------------------------------------------#
+	 Database::ALLCOUNTRIES		----->		TableName:: COUNTRY
+#----------------------------------------------#
+
+		*Primary Key:		COUNTRYID		----->		Integer
+							NAME		----->		String
+		*Foreign Key:		STATEID		----->		Integer
+							VACCINATED		----->		Boolean
+#----------------------------------------------#
+
+#----------------------------------------------#
+	 Database::ALLCOUNTRIES		----->		TableName:: STATE
+#----------------------------------------------#
+
+		*Primary Key:		STATEID		----->		Integer
+							STATENAME		----->		String
+		*Foreign Key:		CITYID		----->		Integer
+#----------------------------------------------#
+
+
+#----------------------------------------------------------#
+		ER Diagram:
+
+#----------------------------------------------------------#
+
+
+			Primary Key:	------------>	Foreign Key
+
+			CITY	------------>	STATE
+			STATE	------------>	COUNTRY
+#----------------------------------------------------------#
+exit 
+
+	Exit
+	

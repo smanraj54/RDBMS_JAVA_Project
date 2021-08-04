@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class Application {
 
   public static String AllDatabasesPath = "./FilesOfData/databases/allDatabases.txt";
+  public static String AllUsersPath = "./FilesOfData/LoginUsersData/AllUsers";
   public static String pathOfUsers = "./RawData/LoginUsersData/AllUsers";
   public static String pathOfDataBase = "./RawData/databases/allDatabases";
 

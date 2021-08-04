@@ -62,7 +62,7 @@ create database first
 create database second
 show databases
 use first
-create table firstTable (name string, age int, firstTableID int, primary firsttableid)
+create table SecondTable (SecondTableID int, name string, age int, firsttableid int, primary firsttableid, foreign firsttableid )
 all tables
 desc firsttable
 insert into firsttable (name, age, firsttableid) values ('Manraj Singh', 25, 1)

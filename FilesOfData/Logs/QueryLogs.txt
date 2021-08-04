@@ -1,0 +1,59 @@
+show databases
+use first
+show databases
+all tables 
+desc firsttable
+create table SecondTable (SecondTableID int, name string, age int, firsttableid int, primary firsttableid, foreignkey firsttableid )
+all tables
+desc secondtable
+exit
+create table SecondTable (SecondTableID int, name string, age int, firsttableid int, primary firsttableid, foreign firsttableid )
+show databases
+use first
+show databases
+all tables
+create table SecondTable (SecondTableID int, name string, age int, firsttableid int, primary SecondTableID, foreign firsttableid )
+all tables 
+desc secondtable
+create table SecondTable (SecondTableID int, name string, age int, firsttableid int, primary SecondTableID, foreign firsttableid )
+use first
+create table SecondTable (SecondTableID int, name string, age int, firsttableid int, primary SecondTableID, foreign firsttableid )
+desc secondtable
+select * from firsttable
+show databases
+create first
+create database first
+show databases
+use first
+create table SecondTable (SecondTableID int, name string, age int, firsttableid int, primary SecondTableID, foreign firsttableid )
+create table firstTable (firstTableID int, name string, age int, primary firsttableid)
+all tables
+desc firsttable
+desc secondtable
+insert into firsttable (name, age, firsttableid) values ('Manraj Singh', 25, 1)
+insert into firsttable (name, age, firsttableid) values ('Vishvesh Bhau', 24, 2)
+commit;
+sqldump first
+sqldump save
+insert into firsttable (name, age, firsttableid) values ('Dhrumil Shah', 26, 3)
+commit
+sqldump save
+exit
+show databases
+use first
+all tables
+select * from firsttable
+exit
+use first
+all tables
+desc firsttable
+select * from firsttable
+select (name) from firsttable where age < 26
+select (name, age) from firsttable where age< 26 and firsttableid>1
+select (name) from firsttable where age < 26
+select (name, age) from firsttable where age < 26
+select (name, age) from firsttable where age < 26 and age > 24
+select (name, age) from firsttable where age < 26 and firsttableid > 1
+select (name, age) from firsttable where age < 26 and age > 24
+select * from firsttable where age < 26 and firsttableid > 1
+exit

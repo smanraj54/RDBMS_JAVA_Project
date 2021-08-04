@@ -1,5 +1,8 @@
 package com.dal.database.Login;
 
+import com.dal.database.DataStorage.Database;
+import com.dal.database.fetchdatabase.FetchDataFromDataFile;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -59,4 +62,38 @@ public class AllUsers implements Serializable {
 
         return stringBuilder.toString();
     }
+
+    public static void loadAllUsers(){
+        boolean keywordReceived = false;
+        String userName = null;
+        UserDetails userDetails = null;
+        String keyword = FetchDataFromDataFile.getNextKeyword();
+        for(;;){
+
+            if(userName != null && userDetails != null){
+                AllUsers.getInstance().usersList.put(userName, userDetails);
+                userName = null;
+                userDetails = null;
+            }
+            if (keyword == null || FetchDataFromDataFile.tokens == null || FetchDataFromDataFile.tokens.size() <= 0) {
+                return;
+            }
+            if(keyword.equals("]") || keyword.equals("}")){
+                keyword = FetchDataFromDataFile.getNextKeyword();
+                continue;
+            }
+            if(!keywordReceived){
+                keywordReceived = true;
+                userName = keyword;
+            }
+            else{
+                keywordReceived = false;
+                userDetails = UserDetails.fetchUserDetails(keyword);
+            }
+            keyword = FetchDataFromDataFile.getNextKeyword();
+
+
+        }
+    }
+
 }

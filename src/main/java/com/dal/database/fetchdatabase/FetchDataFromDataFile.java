@@ -3,10 +3,7 @@ package com.dal.database.fetchdatabase;
 import com.dal.database.DataStorage.AllDatabases;
 import com.dal.database.queryManagement.SplitQuery;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 
 public class FetchDataFromDataFile {
@@ -16,6 +13,10 @@ public class FetchDataFromDataFile {
     public static List<String> fetchDataFromFile(String path){
         FileReader fileReader = null;
         try {
+            File file = new File(path);
+            if(!file.exists()){
+                return null;
+            }
             fileReader = new FileReader(path);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -34,9 +35,8 @@ public class FetchDataFromDataFile {
         String fileData = stringBuffer.toString();
         SplitQuery splitQuery = new SplitQuery(fileData);
         List<String> tokens = splitQuery.splitQueryTokens();
-        splitQuery.printTokens(tokens);
+        //splitQuery.printTokens(tokens);
         FetchDataFromDataFile.tokens = tokens;
-        AllDatabases.loadAllMydatabases();
         return tokens;
     }
 

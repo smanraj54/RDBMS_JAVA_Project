@@ -1,5 +1,7 @@
 package com.dal.database.Login;
 
+import com.dal.database.fetchdatabase.FetchDataFromDataFile;
+
 import java.io.Serializable;
 
 public class UserDetails implements Serializable {
@@ -44,6 +46,28 @@ public class UserDetails implements Serializable {
         stringBuilder.append(space + "}");
 
         return stringBuilder.toString();
+    }
+
+    public static UserDetails fetchUserDetails(String keyword){
+        String userName = null;
+        String password = null;
+        for(;;){
+            if(keyword.equalsIgnoreCase("userName")){
+                keyword = FetchDataFromDataFile.getNextKeyword();
+                userName = keyword;
+            }
+            if(keyword.equalsIgnoreCase("password")){
+                keyword = FetchDataFromDataFile.getNextKeyword();
+                password = keyword;
+            }
+            if(keyword.equals("}") || keyword.equals("]")){
+                UserDetails userDetails = new UserDetails(userName, password);
+                return userDetails;
+            }
+            keyword = FetchDataFromDataFile.getNextKeyword();
+
+        }
+
     }
 
 }

@@ -112,7 +112,7 @@ public class Table implements Serializable {
                 continue;
             }
             else{
-                keywordReceived = !keywordReceived;
+                //keywordReceived = !keywordReceived;
                 TableRowEntryStructure row = TableRowEntryStructure.fetchMyRow(keyword);
                 table.rows.add(row);
             }

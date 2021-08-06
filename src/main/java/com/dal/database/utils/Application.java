@@ -1,6 +1,7 @@
 package com.dal.database.utils;
 
 import com.dal.database.PrintInfo;
+import com.dal.database.fetchdatabase.FetchDataFromDataFile;
 import com.dal.database.fetchdatabase.FetchDataFromFiles;
 
 import java.io.IOException;
@@ -8,13 +9,14 @@ import java.util.Scanner;
 
 public class Application {
 
+  public static String AllDatabasesPath = "./FilesOfData/databases/allDatabases.txt";
+  public static String AllUsersPath = "./FilesOfData/LoginUsersData/AllUsers";
   public static String pathOfUsers = "./RawData/LoginUsersData/AllUsers";
   public static String pathOfDataBase = "./RawData/databases/allDatabases";
 
   public static void main(String[] args) throws IOException {
 
-    FetchDataFromFiles.fetchAllDatabases();
-    FetchDataFromFiles.fetchAllUsers();
+    Script.runScript();
 
     final Scanner scanner = new Scanner(System.in);
     final PrintInfo printer = PrintInfo.getInstance();

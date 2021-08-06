@@ -13,6 +13,8 @@ public class WriteDatabaseToFile {
     public void writeThisDatabasesList(AllDatabases databases){
         WriteObjectToFile writeObjectToFile = new WriteObjectToFile();
         writeObjectToFile.writeObject(databases, Application.pathOfDataBase);
+        WriteStringToFile writeStringToFile = new WriteStringToFile();
+        writeStringToFile.writeString(databases.getAllMyDatabases(), "./FilesOfData/databases/AllDatabases.txt");
     }
 
     public static WriteDatabaseToFile getInstance(){
